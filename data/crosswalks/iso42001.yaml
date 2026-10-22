@@ -1,0 +1,431 @@
+# ISO/IEC 42001:2023 crosswalk
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: clause and control numbers kept; titles replaced with the standard's short titles, verified against a licensed copy; descriptive text dropped.
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+framework: ISO/IEC 42001:2023 crosswalk
+by_control:
+  POS-01:
+  - ref: A.4.2
+    title: Resource documentation
+  - ref: A.6.2.7
+    title: AI system technical documentation
+  - ref: A.9.4
+    title: Intended use of the AI system
+  POS-02:
+  - ref: 6.1.2
+    title: AI risk assessment
+  - ref: 6.1.4
+    title: AI system impact assessment
+  - ref: '8.4'
+    title: AI system impact assessment
+  - ref: A.5.2
+    title: AI system impact assessment process
+  POS-03:
+  - ref: A.3.2
+    title: AI roles and responsibilities
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: '5.3'
+    title: Roles, responsibilities and authorities
+  POS-04:
+  - ref: A.2.2
+    title: AI policy
+  - ref: A.2.3
+    title: Alignment with other organizational policies
+  - ref: A.9.2
+    title: Processes for responsible use of AI systems
+  POS-05:
+  - ref: A.3.2
+    title: AI roles and responsibilities
+  - ref: '5.3'
+    title: Roles, responsibilities and authorities
+  POS-06:
+  - ref: A.10.2
+    title: Allocating responsibilities
+  - ref: A.10.3
+    title: Suppliers
+  POS-07:
+  - ref: '4.2'
+    title: Understanding the needs and expectations of interested parties
+  - ref: A.2.2
+    title: AI policy
+  - ref: A.8.3
+    title: External reporting
+  POS-08:
+  - ref: A.7.3
+    title: Acquisition of data
+  - ref: A.10.3
+    title: Suppliers
+  - ref: A.7.5
+    title: Data provenance
+  RUN-01:
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  RUN-02:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.8.2
+    title: System documentation and information for users
+  - ref: A.9.3
+    title: Objectives for responsible use of AI system
+  RUN-03:
+  - ref: A.4.5
+    title: System and computing resources
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  RUN-04:
+  - ref: A.4.5
+    title: System and computing resources
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  RUN-05:
+  - ref: A.5.4
+    title: Assessing AI system impact on individuals or groups of individuals
+  - ref: A.5.5
+    title: Assessing societal impacts of AI systems
+  - ref: A.9.3
+    title: Objectives for responsible use of AI system
+  RUN-06:
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  - ref: A.7.4
+    title: Quality of data for AI systems
+  RUN-07:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.4.5
+    title: System and computing resources
+  RUN-08:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.4.5
+    title: System and computing resources
+  RUN-09:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.8.4
+    title: Communication of incidents
+  - ref: '10.2'
+    title: Nonconformity and corrective action
+  SHA-01:
+  - ref: A.4.2
+    title: Resource documentation
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  SHA-02:
+  - ref: A.9.2
+    title: Processes for responsible use of AI systems
+  - ref: A.2.2
+    title: AI policy
+  SHA-03:
+  - ref: A.6.2.8
+    title: AI system recording of event logs
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  SHA-04:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: '9.1'
+    title: Monitoring, measurement, analysis and evaluation
+  SHA-05:
+  - ref: A.9.2
+    title: Processes for responsible use of AI systems
+  - ref: A.2.2
+    title: AI policy
+  OBS-01:
+  - ref: A.6.2.8
+    title: AI system recording of event logs
+  - ref: A.6.2.7
+    title: AI system technical documentation
+  OBS-02:
+  - ref: A.6.2.8
+    title: AI system recording of event logs
+  - ref: '7.5'
+    title: Documented information
+  OBS-03:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.8.4
+    title: Communication of incidents
+  OBS-04:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.8.4
+    title: Communication of incidents
+  OBS-05:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  - ref: '9.1'
+    title: Monitoring, measurement, analysis and evaluation
+  OBS-06:
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  OBS-07:
+  - ref: A.5.4
+    title: Assessing AI system impact on individuals or groups of individuals
+  - ref: A.7.4
+    title: Quality of data for AI systems
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  OBS-08:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.6.2.8
+    title: AI system recording of event logs
+  - ref: A.9.4
+    title: Intended use of the AI system
+  DAT-01:
+  - ref: A.7.2
+    title: Data for development and enhancement of AI system
+  - ref: A.7.3
+    title: Acquisition of data
+  - ref: A.9.2
+    title: Processes for responsible use of AI systems
+  DAT-02:
+  - ref: A.7.4
+    title: Quality of data for AI systems
+  - ref: A.5.4
+    title: Assessing AI system impact on individuals or groups of individuals
+  - ref: A.7.3
+    title: Acquisition of data
+  DAT-03:
+  - ref: A.7.2
+    title: Data for development and enhancement of AI system
+  - ref: A.7.4
+    title: Quality of data for AI systems
+  - ref: A.7.5
+    title: Data provenance
+  - ref: A.7.6
+    title: Data preparation
+  DAT-04:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.10.3
+    title: Suppliers
+  DAT-05:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.4.5
+    title: System and computing resources
+  DAT-06:
+  - ref: A.7.6
+    title: Data preparation
+  - ref: A.7.2
+    title: Data for development and enhancement of AI system
+  - ref: A.6.2.8
+    title: AI system recording of event logs
+  DAT-07:
+  - ref: A.7.2
+    title: Data for development and enhancement of AI system
+  - ref: A.7.3
+    title: Acquisition of data
+  - ref: A.6.2.8
+    title: AI system recording of event logs
+  DAT-08:
+  - ref: A.10.3
+    title: Suppliers
+  - ref: A.7.3
+    title: Acquisition of data
+  - ref: A.7.5
+    title: Data provenance
+  DAT-09:
+  - ref: A.8.2
+    title: System documentation and information for users
+  - ref: A.8.5
+    title: Information for interested parties
+  - ref: A.9.3
+    title: Objectives for responsible use of AI system
+  DAT-10:
+  - ref: A.8.4
+    title: Communication of incidents
+  - ref: A.8.3
+    title: External reporting
+  - ref: A.8.5
+    title: Information for interested parties
+  NHI-01:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.4.5
+    title: System and computing resources
+  - ref: A.9.2
+    title: Processes for responsible use of AI systems
+  NHI-02:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.4.5
+    title: System and computing resources
+  NHI-03:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.6.2.5
+    title: AI system deployment
+  NHI-04:
+  - ref: A.6.2.5
+    title: AI system deployment
+  NHI-05:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.4.5
+    title: System and computing resources
+  NHI-06:
+  - ref: A.9.2
+    title: Processes for responsible use of AI systems
+  - ref: A.9.4
+    title: Intended use of the AI system
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  NHI-07:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.6.2.8
+    title: AI system recording of event logs
+  - ref: A.9.4
+    title: Intended use of the AI system
+  NHI-08:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.9.4
+    title: Intended use of the AI system
+  NHI-09:
+  - ref: A.9.2
+    title: Processes for responsible use of AI systems
+  - ref: A.9.3
+    title: Objectives for responsible use of AI system
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  NHI-10:
+  - ref: A.6.2.3
+    title: Documentation of AI system design and development
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.10.2
+    title: Allocating responsibilities
+  NHI-11:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.4.5
+    title: System and computing resources
+  NHI-12:
+  - ref: A.7.4
+    title: Quality of data for AI systems
+  - ref: A.7.6
+    title: Data preparation
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  SUP-01:
+  - ref: A.6.2.7
+    title: AI system technical documentation
+  - ref: A.4.2
+    title: Resource documentation
+  - ref: A.10.3
+    title: Suppliers
+  SUP-02:
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: '8.1'
+    title: Operational planning and control
+  SUP-03:
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.8.4
+    title: Communication of incidents
+  - ref: '10.2'
+    title: Nonconformity and corrective action
+  SUP-04:
+  - ref: A.7.5
+    title: Data provenance
+  - ref: A.7.3
+    title: Acquisition of data
+  - ref: A.7.2
+    title: Data for development and enhancement of AI system
+  - ref: A.7.4
+    title: Quality of data for AI systems
+  SUP-05:
+  - ref: A.7.3
+    title: Acquisition of data
+  - ref: A.5.4
+    title: Assessing AI system impact on individuals or groups of individuals
+  - ref: A.8.5
+    title: Information for interested parties
+  SUP-06:
+  - ref: A.6.1.3
+    title: Processes for responsible AI system design and development
+  - ref: A.6.2.3
+    title: Documentation of AI system design and development
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.4.4
+    title: Tooling resources
+  SUP-07:
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.10.3
+    title: Suppliers
+  SUP-08:
+  - ref: A.10.3
+    title: Suppliers
+  - ref: A.10.2
+    title: Allocating responsibilities
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  - ref: A.5.2
+    title: AI system impact assessment process
+  SUP-09:
+  - ref: A.4.4
+    title: Tooling resources
+  - ref: A.10.3
+    title: Suppliers
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  SUP-10:
+  - ref: A.7.4
+    title: Quality of data for AI systems
+  - ref: A.7.5
+    title: Data provenance
+  - ref: A.6.2.5
+    title: AI system deployment
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  SUP-11:
+  - ref: A.6.2.3
+    title: Documentation of AI system design and development
+  - ref: A.6.2.5
+    title: AI system deployment
+  SUP-12:
+  - ref: A.7.4
+    title: Quality of data for AI systems
+  - ref: A.7.6
+    title: Data preparation
+  - ref: A.6.2.4
+    title: AI system verification and validation
+  SUP-13:
+  - ref: A.6.2.8
+    title: AI system recording of event logs
+  - ref: A.6.2.6
+    title: AI system operation and monitoring
+  - ref: A.8.4
+    title: Communication of incidents

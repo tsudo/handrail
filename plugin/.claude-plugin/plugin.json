@@ -1,0 +1,8 @@
+{
+  "name": "handrail",
+  "version": "2.0.0",
+  "description": "Score AI tools on the Three Surfaces model and set up an AI governance program: an assessor and an advisor.",
+  "author": { "name": "Keith Crawford", "url": "https://keithcrawford.me" },
+  "homepage": "https://keithcrawford.me",
+  "license": "Apache-2.0"
+}

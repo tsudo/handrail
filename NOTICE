@@ -1,0 +1,112 @@
+Three Surfaces
+Copyright 2026 Keith Crawford
+
+Handrail is published under two licences:
+  - Documentation, templates, examples and guides: Creative Commons
+    Attribution 4.0 International (LICENSE at the repository root).
+  - Data, tools, the skill plugin, and the files modified from the
+    workbook listed below: Apache License, Version 2.0 (LICENSE-code at
+    the repository root; LICENSE inside plugin/).
+The licence for each path is listed in the repository's README.md.
+
+-----------------------------------------------------------------------
+AI Security Risk Workbook (Jason Robbins)
+-----------------------------------------------------------------------
+
+Handrail builds on the AI Security Risk Workbook v3.0 by Jason
+Robbins (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook,
+commit b775ec31a34e7788bb5b75fc55111d5a51d991b2), licensed under the
+Apache License, Version 2.0.
+
+These files are modified from that workbook. Each states what was
+changed:
+
+  - data/functions.yaml, data/controls.yaml and the files in
+    data/crosswalks/ (the function and guardrail catalog and its mappings),
+    and their copies in plugin/skills/handrail-assessor/data/
+    (functions.yaml, controls.yaml, owasp.yaml)
+  - kit/crosswalk.xlsx and docs/crosswalk.md, generated from those files
+  - data/model.yaml (level wording for six capability and data questions,
+    the data classes, and the default routing roles, which follow the
+    workbook's Org Profile starter values), and its copies in
+    plugin/skills/*/data/. The same level wording and routing roles appear
+    in kit/scoring-rubric.md, kit/quick-score-worksheet.md and
+    docs/level-1.md (inside the blocks marked <!-- rubric: ... -->),
+    kit/policy.md section 10, kit/profile.yaml, examples/saas-company/
+    profile.yaml and plugin/skills/handrail-advisor/data/profile.yaml;
+    that wording remains Apache-2.0 within those files
+  - control names and identifiers, and function identifiers, used in
+    examples/saas-company/*.record.md (from data/controls.yaml and
+    data/functions.yaml)
+  - plugin/skills/handrail-assessor/SKILL.md (from the
+    ai-tool-risk-assessment skill: ground rules and record structure)
+  - kit/assessment-record.md (from that skill's record format), and its
+    copy in plugin/skills/handrail-assessor/data/
+  - kit/intake-form.md (from the AI Intake Form and that skill's
+    internal-build block)
+  - tools/check (record rules reimplemented from that skill)
+
+The function and guardrail identifiers (for example POS-01, NHI-07) are
+identifiers from the workbook, kept for traceability. They are not a
+published industry standard.
+
+Handrail is not endorsed by, affiliated with, or published by
+Jason Robbins.
+
+The workbook's NOTICE reads, in full:
+
+  AI Security Governance Workbook
+  Copyright 2026 Jason Robbins
+
+  This product includes the AI Security Risk Workbook v3.0, the AI Intake Form
+  and the ai-tool-risk-assessment Claude skill, developed by Jason Robbins
+  (https://github.com/jasonmichaelrobbins-arch) and licensed under the Apache
+  License, Version 2.0.
+
+  Vendor and product names on the AI Security Tool Landscape tab and elsewhere
+  are used to identify those products and do not imply endorsement of, or
+  affiliation with, the vendors named. Framework names and control identifiers
+  (CSA AI Controls Matrix, EU AI Act, ISO/IEC 42001, MITRE ATLAS, NIST AI RMF,
+  NIST AI 600-1, OWASP, AICPA SOC 2) belong to their respective owners; this
+  work cites them by name and identifier and does not reproduce their text.
+
+  The worked example records describe fictional organizations, vendors and
+  products. Any resemblance to a real product or vendor is unintended.
+
+-----------------------------------------------------------------------
+MITRE ATLAS
+-----------------------------------------------------------------------
+
+data/atlas-ids.yaml (and its copy in plugin/skills/handrail-assessor/
+data/) lists technique, tactic and mitigation identifiers
+and names from MITRE ATLAS release 2026.09
+(https://github.com/mitre-atlas/atlas-data), Copyright 2021-2026 MITRE,
+licensed under the Apache License, Version 2.0.
+
+-----------------------------------------------------------------------
+NIST
+-----------------------------------------------------------------------
+
+Subcategory identifiers from the NIST AI Risk Management Framework
+(AI 100-1) and the Generative AI Profile (AI 600-1) are cited. NIST
+publications are works of the United States Government.
+
+-----------------------------------------------------------------------
+Cited, not reproduced
+-----------------------------------------------------------------------
+
+These sources are cited by identifier only (and, where stated, a short
+name). Their text is not included, and their own licences apply:
+
+  - ISO/IEC 42001:2023 and ISO/IEC 42005:2025 (ISO and IEC, copyrighted):
+    clause and control numbers with short titles.
+  - CSA AI Controls Matrix (Cloud Security Alliance): bare control IDs.
+  - CSA MAESTRO (Cloud Security Alliance): layer numbers and names.
+  - AICPA Trust Services Criteria (SOC 2): bare criteria IDs.
+  - OWASP Top 10 for LLM Applications and Top 10 for Agentic Applications
+    (OWASP Foundation): identifiers, with short names where shown.
+  - Regulation (EU) 2024/1689 (EU AI Act): article numbers. Summaries are
+    written for this project.
+
+The worked examples describe fictional organizations. Any resemblance to a
+real organization is unintended.

@@ -1,0 +1,375 @@
+# NIST AI 600-1 crosswalk
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: action-group IDs and named GAI risks kept; other text dropped.
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+framework: NIST AI 600-1 crosswalk
+by_control:
+  POS-01:
+    actions:
+    - GV-1.6
+    risks:
+    - Value Chain and Component Integration
+  POS-02:
+    actions:
+    - MP-5.1
+    - GV-1.3
+    risks: []
+  POS-03:
+    actions:
+    - GV-1.4
+    - GV-2.1
+    risks: []
+  POS-04:
+    actions:
+    - GV-1.2
+    risks:
+    - Human-AI Configuration
+  POS-05:
+    actions:
+    - GV-2.1
+    risks: []
+  POS-06:
+    actions:
+    - GV-6.1
+    - GV-6.2
+    risks:
+    - Value Chain and Component Integration
+  POS-07:
+    actions:
+    - GV-1.1
+    risks: []
+  POS-08:
+    actions:
+    - MP-4.1
+    risks:
+    - Data Privacy
+  RUN-01:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  RUN-02:
+    actions:
+    - MS-2.6
+    - MS-2.10
+    risks:
+    - Confabulation
+    - Dangerous, Violent, or Hateful Content
+    - Data Privacy
+  RUN-03:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  RUN-04:
+    actions:
+    - MG-2.2
+    - MG-2.4
+    risks:
+    - Environmental Impacts
+    - Information Security
+  RUN-05:
+    actions:
+    - MS-2.6
+    risks:
+    - CBRN Information or Capabilities
+    - Dangerous, Violent, or Hateful Content
+    - Obscene, Degrading, and/or Abusive Content
+  RUN-06:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  RUN-07:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  RUN-08:
+    actions:
+    - MS-2.10
+    risks:
+    - Data Privacy
+  RUN-09:
+    actions:
+    - MG-2.4
+    - MG-2.3
+    risks:
+    - Human-AI Configuration
+  SHA-01:
+    actions:
+    - GV-1.6
+    - GV-1.5
+    risks: []
+  SHA-02:
+    actions:
+    - GV-1.6
+    risks: []
+  SHA-03:
+    actions:
+    - MS-2.4
+    - MG-4.1
+    risks: []
+  SHA-04:
+    actions:
+    - MS-2.4
+    - MG-4.1
+    risks: []
+  SHA-05:
+    actions:
+    - MP-4.1
+    risks:
+    - Data Privacy
+  OBS-01:
+    actions:
+    - MS-2.8
+    - MS-2.4
+    - MG-4.1
+    risks: []
+  OBS-02:
+    actions:
+    - GV-4.2
+    - MG-4.3
+    risks: []
+  OBS-03:
+    actions:
+    - MS-2.7
+    - MG-4.1
+    - GV-4.3
+    risks: []
+  OBS-04:
+    actions:
+    - MG-4.1
+    - MS-3.3
+    risks: []
+  OBS-05:
+    actions:
+    - MS-2.5
+    - MS-2.4
+    risks:
+    - Confabulation
+  OBS-06:
+    actions:
+    - MS-2.7
+    - MS-1.1
+    risks:
+    - Information Security
+  OBS-07:
+    actions:
+    - MS-2.11
+    risks:
+    - Harmful Bias and Homogenization
+  OBS-08:
+    actions:
+    - MS-2.4
+    - MG-4.1
+    - MG-2.4
+    risks:
+    - Human-AI Configuration
+  DAT-01:
+    actions:
+    - MP-4.1
+    - MS-2.10
+    risks:
+    - Data Privacy
+    - Intellectual Property
+  DAT-02:
+    actions:
+    - MS-2.10
+    risks:
+    - Data Privacy
+  DAT-03:
+    actions:
+    - MP-4.1
+    risks:
+    - Data Privacy
+    - Intellectual Property
+  DAT-04:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  DAT-05:
+    actions:
+    - MS-2.7
+    - MS-2.10
+    risks: []
+  DAT-06:
+    actions:
+    - MS-2.10
+    risks:
+    - Data Privacy
+  DAT-07:
+    actions:
+    - MS-2.10
+    - GV-1.7
+    risks:
+    - Data Privacy
+  DAT-08:
+    actions:
+    - MP-4.1
+    - GV-6.1
+    risks:
+    - Data Privacy
+    - Intellectual Property
+  DAT-09:
+    actions:
+    - MS-2.8
+    risks:
+    - Information Integrity
+  DAT-10:
+    actions:
+    - MG-4.3
+    - GV-4.3
+    risks: []
+  NHI-01:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  NHI-02:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  NHI-03:
+    actions:
+    - MS-2.7
+    risks: []
+  NHI-04:
+    actions:
+    - MS-2.7
+    risks: []
+  NHI-05:
+    actions:
+    - MS-2.7
+    risks: []
+  NHI-06:
+    actions:
+    - MG-2.4
+    - MS-2.6
+    risks:
+    - Human-AI Configuration
+  NHI-07:
+    actions:
+    - MS-2.7
+    - MG-2.4
+    risks: []
+  NHI-08:
+    actions:
+    - MG-2.4
+    - MG-2.2
+    risks: []
+  NHI-09:
+    actions:
+    - GV-3.2
+    - MG-2.4
+    risks:
+    - Human-AI Configuration
+  NHI-10:
+    actions:
+    - MS-2.7
+    - MG-2.4
+    risks: []
+  NHI-11:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  NHI-12:
+    actions:
+    - MS-2.7
+    - MS-2.10
+    risks:
+    - Data Privacy
+    - Information Security
+  SUP-01:
+    actions:
+    - GV-6.1
+    - MG-3.2
+    risks:
+    - Value Chain and Component Integration
+  SUP-02:
+    actions:
+    - MG-3.2
+    - MG-4.1
+    risks: []
+  SUP-03:
+    actions:
+    - MG-2.4
+    - MG-4.1
+    risks: []
+  SUP-04:
+    actions:
+    - MP-4.1
+    - MS-2.1
+    risks:
+    - Data Privacy
+    - Intellectual Property
+  SUP-05:
+    actions:
+    - MP-4.1
+    - MS-2.10
+    risks:
+    - Data Privacy
+    - Intellectual Property
+  SUP-06:
+    actions:
+    - MS-2.7
+    - GV-6.1
+    risks:
+    - Information Security
+    - Value Chain and Component Integration
+  SUP-07:
+    actions:
+    - MG-3.2
+    - MS-2.7
+    risks:
+    - Value Chain and Component Integration
+  SUP-08:
+    actions:
+    - GV-6.1
+    - MG-3.2
+    risks:
+    - Intellectual Property
+    - Value Chain and Component Integration
+  SUP-09:
+    actions:
+    - GV-6.1
+    - MS-2.7
+    risks:
+    - Value Chain and Component Integration
+  SUP-10:
+    actions:
+    - MS-2.7
+    risks:
+    - Data Privacy
+    - Information Security
+  SUP-11:
+    actions:
+    - MS-2.7
+    risks:
+    - Information Security
+  SUP-12:
+    actions:
+    - MS-2.7
+    - MS-2.5
+    risks:
+    - Information Integrity
+  SUP-13:
+    actions:
+    - MS-2.8
+    - MG-4.1
+    risks: []

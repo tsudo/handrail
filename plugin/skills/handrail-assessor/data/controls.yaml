@@ -1,0 +1,525 @@
+# Handrail control catalog (65 guardrails in seven families)
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: restructured as YAML; 'Required by functions' and 'Your control' columns dropped; scope values renamed; references to workbook tabs retargeted to Three Surfaces artifacts (Tool Registry -> AI register, Org Profile -> organization profile, Compliance Mapping tab -> data/crosswalks, factor scoring -> Three Surfaces scoring); names otherwise unchanged.
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+catalog_version: 1.0.0
+families:
+- code: POS
+  name: AI Posture & Governance
+- code: RUN
+  name: Runtime Protection & Guardrails
+- code: SHA
+  name: Shadow AI & Usage Discovery
+- code: OBS
+  name: Observability & Evaluation
+- code: DAT
+  name: Data Protection for AI
+- code: NHI
+  name: NHI & Agentic Access
+- code: SUP
+  name: AI Supply Chain
+controls:
+- id: POS-01
+  family: POS
+  name: Tool registration
+  scope: every_tool
+  agentic: false
+  verify: The tool has an entry in the AI register with every required field filled in.
+  evidence: 'AI register row: tool, vendor or builder, source, risk level, owners, status. Exported or
+    linked.'
+- id: POS-02
+  family: POS
+  name: Risk classification
+  scope: every_tool
+  agentic: false
+  verify: The Three Surfaces questions are scored, the worst rating sets the tier, and the functions the
+    tool performs are listed.
+  evidence: The Three Surfaces assessment record, with the scores and the function list.
+- id: POS-03
+  family: POS
+  name: Approval obtained
+  scope: every_tool
+  agentic: false
+  verify: Approval is recorded at the level the organization profile sets for this risk level, with conditions
+    written down.
+  evidence: Ticket or workflow record of the approval, linked from the AI register.
+- id: POS-04
+  family: POS
+  name: Policy alignment
+  scope: every_tool
+  agentic: false
+  verify: The use fits the AI acceptable-use policy and any data handling rules it points to.
+  evidence: Signed acknowledgment from the tool owner, or the policy clause the use falls under.
+- id: POS-05
+  family: POS
+  name: Owner assignment
+  scope: every_tool
+  agentic: false
+  verify: A business owner and a technical owner are named, and both know they own it.
+  evidence: 'AI register: Business Owner and Technical Owner fields filled in.'
+- id: POS-06
+  family: POS
+  name: Vendor assessment
+  scope: vendor_products
+  agentic: false
+  verify: 'The vendor''s security posture has been assessed: a SOC 2 Type II or ISO 27001 certificate
+    reviewed, the DPA read, the AI data-handling terms confirmed.'
+  evidence: 'Vendor risk record: SOC 2 Type II under 12 months old, DPA, AI addendum or equivalent, filed
+    in the evidence store.'
+- id: POS-07
+  family: POS
+  name: Compliance mapping
+  scope: by_function
+  agentic: false
+  verify: The tool is mapped to the frameworks the organization answers to, using the crosswalks in data/crosswalks.
+  evidence: Completed framework mapping for this tool, stored in the GRC tool or the evidence store.
+- id: POS-08
+  family: POS
+  name: Data residency review
+  scope: by_function
+  agentic: false
+  verify: Where prompts, outputs, embeddings and logs are processed and stored is known and fits the residency
+    requirements.
+  evidence: Vendor DPA or architecture note naming the regions, checked against the requirements.
+- id: RUN-01
+  family: RUN
+  name: Input validation
+  scope: by_function
+  agentic: false
+  verify: Prompt injection detection runs on every user-supplied input and on retrieved content before
+    it reaches the model.
+  evidence: Runtime product or gateway configuration showing detection enabled, plus a sample blocked
+    request.
+- id: RUN-02
+  family: RUN
+  name: Output filtering
+  scope: by_function
+  agentic: false
+  verify: Model outputs pass through content filtering and PII redaction before a person or a downstream
+    system sees them.
+  evidence: Filter rules and a sample blocked or redacted response from the log.
+- id: RUN-03
+  family: RUN
+  name: Rate limiting (per user)
+  scope: by_function
+  agentic: false
+  verify: Per-user request and token limits are configured and enforced.
+  evidence: API gateway or product configuration with the limit values.
+- id: RUN-04
+  family: RUN
+  name: Rate limiting (per workload)
+  scope: by_function
+  agentic: true
+  verify: Per-workload and per-agent request, token and cost ceilings stop a runaway task.
+  evidence: Gateway quota configuration and the cost alert rule.
+- id: RUN-05
+  family: RUN
+  name: Content safety
+  scope: by_function
+  agentic: false
+  verify: Harmful content is detected and blocked on both prompts and responses.
+  evidence: Content safety configuration and a sample detection from the log.
+- id: RUN-06
+  family: RUN
+  name: Multi-modal input validation
+  scope: by_function
+  agentic: false
+  verify: Image, audio, video and document inputs are scanned for embedded instructions before processing.
+  evidence: Scanner configuration for each input type and a sample block.
+- id: RUN-07
+  family: RUN
+  name: Domain restrictions (egress)
+  scope: by_function
+  agentic: true
+  verify: Network egress from the tool or agent is restricted to allowlisted domains, with everything
+    else denied and logged.
+  evidence: Firewall or proxy allowlist, the deny rule, and a sample blocked request.
+- id: RUN-08
+  family: RUN
+  name: Prompt cache isolation
+  scope: by_function
+  agentic: false
+  verify: Prompt and response caches are partitioned per user or tenant with a bounded TTL and no cross-tenant
+    reuse.
+  evidence: Cache configuration showing the partition key and the TTL.
+- id: RUN-09
+  family: RUN
+  name: Fallback and graceful degradation
+  scope: by_function
+  agentic: false
+  verify: 'Defined behavior exists for each guardrail failure mode: block, warn, log or route to a person.
+    It has been tested.'
+  evidence: Runbook with the fallback decision tree and the last test results.
+- id: SHA-01
+  family: SHA
+  name: Tool visibility
+  scope: every_tool
+  agentic: false
+  verify: The tool shows up in the shadow AI discovery platform or the identity provider's application
+    list.
+  evidence: Discovery platform export or IdP application entry.
+- id: SHA-02
+  family: SHA
+  name: Sanctioned status
+  scope: every_tool
+  agentic: false
+  verify: The tool is marked sanctioned or approved in discovery, so its use is not flagged as shadow
+    AI.
+  evidence: Discovery platform record with status Sanctioned or Approved.
+- id: SHA-03
+  family: SHA
+  name: User access tracked
+  scope: by_function
+  agentic: false
+  verify: Who used the tool, when and for what is logged.
+  evidence: 'Access log export for a sample week: user, timestamp, action.'
+- id: SHA-04
+  family: SHA
+  name: Usage analytics
+  scope: by_function
+  agentic: false
+  verify: Usage patterns, cost and anomalies are reviewed on a cadence.
+  evidence: Dashboard or report showing usage trend, cost and the anomaly rule.
+- id: SHA-05
+  family: SHA
+  name: Personal-account blocking
+  scope: vendor_products
+  agentic: false
+  verify: Corporate egress blocks personal accounts of sanctioned AI tools, so company data stays in the
+    company tenant.
+  evidence: CASB or proxy rule and a sample detection.
+- id: OBS-01
+  family: OBS
+  name: Audit logging
+  scope: by_function
+  agentic: false
+  verify: Prompts, responses and tool calls are logged with user, timestamp, model version and request
+    ID.
+  evidence: Log sample with those fields.
+- id: OBS-02
+  family: OBS
+  name: Log retention
+  scope: by_function
+  agentic: false
+  verify: Logs are retained for the policy period (13 months is a common floor for regulated data) in
+    a location that survives the tool.
+  evidence: 'Retention configuration: days retained and storage location.'
+- id: OBS-03
+  family: OBS
+  name: SIEM integration
+  scope: by_function
+  agentic: false
+  verify: AI tool logs reach the SIEM, with at least one AI-specific detection rule (injection blocks,
+    off-policy tool calls, cost spikes).
+  evidence: SIEM log source active and the detection rule.
+- id: OBS-04
+  family: OBS
+  name: Alerting configured
+  scope: by_function
+  agentic: false
+  verify: Alerts fire for anomalies, policy violations and cost spikes, and someone owns them.
+  evidence: Alert rule configuration and a sample notification.
+- id: OBS-05
+  family: OBS
+  name: Performance and drift monitoring
+  scope: by_function
+  agentic: false
+  verify: Model quality, drift, hallucination rate and latency are monitored against a baseline.
+  evidence: Dashboard with the trend lines and the baseline.
+- id: OBS-06
+  family: OBS
+  name: Red team and adversarial testing
+  scope: by_function
+  agentic: true
+  verify: Adversarial testing runs on a schedule against a current attack corpus, including injection,
+    jailbreak and agent-specific attacks.
+  evidence: 'Red team report: date, findings, remediation status.'
+- id: OBS-07
+  family: OBS
+  name: Bias and fairness testing
+  scope: by_function
+  agentic: false
+  verify: Where the tool informs decisions about people, bias and fairness are evaluated on a protected-class
+    test set.
+  evidence: Bias report with results per class and remediation tickets.
+- id: OBS-08
+  family: OBS
+  name: Agent behavior monitoring
+  scope: by_function
+  agentic: true
+  verify: 'Agent actions are monitored for scope drift and off-task behavior: unusual tool-call patterns,
+    action budgets exceeded, new destinations. Deviations alert a person.'
+  evidence: Monitoring rule set, the action budget, and a sample alert.
+- id: DAT-01
+  family: DAT
+  name: DLP rules active
+  scope: by_function
+  agentic: false
+  verify: 'DLP policies cover the tool''s data flows: prompts, uploads, responses and connectors.'
+  evidence: DLP policy with the tool in scope and a sample block.
+- id: DAT-02
+  family: DAT
+  name: PII detection
+  scope: by_function
+  agentic: false
+  verify: PII detection runs on inputs and outputs, with the detected types listed.
+  evidence: Scanner configuration and a sample detection.
+- id: DAT-03
+  family: DAT
+  name: Data classification
+  scope: by_function
+  agentic: false
+  verify: The data the tool handles is classified using the organization's own labels, and the highest
+    class is recorded.
+  evidence: Classification labels on the data sources and on the AI register row.
+- id: DAT-04
+  family: DAT
+  name: Encryption in transit
+  scope: by_function
+  agentic: false
+  verify: All data in transit uses TLS 1.2 or higher, TLS 1.3 preferred, including agent-to-agent and
+    tool calls.
+  evidence: TLS report or vendor attestation.
+- id: DAT-05
+  family: DAT
+  name: Encryption at rest
+  scope: by_function
+  agentic: false
+  verify: Data the tool stores is encrypted at rest. Regulated workloads use customer-managed keys.
+  evidence: Encryption configuration or vendor attestation, with the CMK reference for High and Severe.
+- id: DAT-06
+  family: DAT
+  name: Data masking
+  scope: by_function
+  agentic: false
+  verify: PII is masked or tokenized in logs, evaluation sets and non-production outputs.
+  evidence: Sample masked log entry.
+- id: DAT-07
+  family: DAT
+  name: Retention policies
+  scope: by_function
+  agentic: false
+  verify: Retention limits for prompts, outputs, memory and uploads are set and enforced, on the vendor
+    side and yours.
+  evidence: Retention configuration or vendor attestation with the period.
+- id: DAT-08
+  family: DAT
+  name: Training data opt-out
+  scope: by_function
+  agentic: false
+  verify: The organization's data is excluded from vendor model training, in writing, at the plan in use.
+  evidence: DPA or AI addendum clause, plus the setting where the opt-out is a configuration.
+- id: DAT-09
+  family: DAT
+  name: Content provenance and watermarking
+  scope: by_function
+  agentic: false
+  verify: AI-generated content that leaves the organization is marked or disclosed (C2PA, watermark, labeled
+    output).
+  evidence: Provenance tooling configuration and a sample marked output.
+- id: DAT-10
+  family: DAT
+  name: Incident disclosure to users
+  scope: by_function
+  agentic: false
+  verify: A process exists to tell affected users about an AI-related incident, with an owner and a template.
+  evidence: Incident communications template and the named owner.
+- id: NHI-01
+  family: NHI
+  name: Service account scoping
+  scope: by_function
+  agentic: true
+  verify: 'Service accounts and agent identities carry least privilege scoped to the workload: named resources,
+    named actions, read-only where read is enough.'
+  evidence: IAM policy export for the account or agent.
+- id: NHI-02
+  family: NHI
+  name: Secrets management
+  scope: by_function
+  agentic: true
+  verify: Credentials live in the vault or secrets manager. None in code, configuration, prompts or agent
+    memory.
+  evidence: Vault reference in the configuration and a clean secret-scan result.
+- id: NHI-03
+  family: NHI
+  name: Credential rotation
+  scope: by_function
+  agentic: true
+  verify: Credentials rotate on the policy cadence, automated where the platform supports it.
+  evidence: Rotation schedule and last rotation timestamp.
+- id: NHI-04
+  family: NHI
+  name: Short-lived tokens
+  scope: by_function
+  agentic: true
+  verify: Tokens expire within 24 hours, 8 hours for privileged workloads, with just-in-time issuance
+    where possible.
+  evidence: Token configuration showing the TTL.
+- id: NHI-05
+  family: NHI
+  name: Agent authentication
+  scope: by_function
+  agentic: true
+  verify: Agents hold a strong identity of their own (mTLS, SPIFFE, workload identity or a PAM-issued
+    credential) and never borrow a person's.
+  evidence: Certificate or gateway authentication policy for the agent identity.
+- id: NHI-06
+  family: NHI
+  name: Intent validation
+  scope: by_function
+  agentic: true
+  verify: Agent actions are checked against a catalog of permitted intents before they run.
+  evidence: Intent policy and a sample blocked action.
+- id: NHI-07
+  family: NHI
+  name: Tool and function authorization
+  scope: by_function
+  agentic: true
+  verify: Every tool call is authorized against an allowlisted tool catalog and logged with its parameters.
+  evidence: Tool catalog, authorization policy and a sample log line.
+- id: NHI-08
+  family: NHI
+  name: Sub-agent spawn limits
+  scope: by_function
+  agentic: true
+  verify: Spawn depth and count are limited, each sub-agent carries a quota, and lineage is auditable
+    back to the parent and the requesting person.
+  evidence: Spawn policy and a sample lineage export.
+- id: NHI-09
+  family: NHI
+  name: Autonomous action limits
+  scope: by_function
+  agentic: true
+  verify: Irreversible or consequential actions require a person's approval. The autonomy level is written
+    down and matches the organization profile ceiling.
+  evidence: Autonomy policy and the action-threshold configuration.
+- id: NHI-10
+  family: NHI
+  name: Agentic boundary controls
+  scope: by_function
+  agentic: true
+  verify: Multi-agent systems have trust boundaries, authenticated inter-agent messages and segmentation
+    between components.
+  evidence: Agent architecture diagram and the boundary enforcement configuration.
+- id: NHI-11
+  family: NHI
+  name: Shell and filesystem sandbox
+  scope: by_function
+  agentic: true
+  verify: Shell and filesystem access runs in an ephemeral sandbox with a path allowlist, a command allowlist
+    and no privilege escalation.
+  evidence: Sandbox image, path allowlist and command allowlist.
+- id: NHI-12
+  family: NHI
+  name: Agent memory protection
+  scope: by_function
+  agentic: true
+  verify: Memory and context stores are isolated per principal, writes are validated, secrets are blocked
+    from memory, and a purge path exists.
+  evidence: Memory store configuration, the write validation rule and the purge procedure.
+- id: SUP-01
+  family: SUP
+  name: Model provenance
+  scope: by_function
+  agentic: false
+  verify: Model source, version and cryptographic hash are documented, with the signer.
+  evidence: 'Model registry entry: source, version, hash, signer.'
+- id: SUP-02
+  family: SUP
+  name: Model version pinning
+  scope: by_function
+  agentic: false
+  verify: Deployments pin a specific model version or snapshot. No floating 'latest' alias in production.
+  evidence: Deployment configuration with the explicit version reference.
+- id: SUP-03
+  family: SUP
+  name: Model rollback procedure
+  scope: by_function
+  agentic: false
+  verify: A tested rollback exists for a model version that degrades quality or safety.
+  evidence: Rollback runbook and the last test date.
+- id: SUP-04
+  family: SUP
+  name: Training data lineage
+  scope: by_function
+  agentic: false
+  verify: Training and fine-tuning data sources are documented with their rights and licensing.
+  evidence: Lineage document with sources and rights.
+- id: SUP-05
+  family: SUP
+  name: Training data opt-in
+  scope: by_function
+  agentic: false
+  verify: Where personal or customer data is used for training, affirmative consent is captured.
+  evidence: 'Consent record: dataset, scope, date.'
+- id: SUP-06
+  family: SUP
+  name: ML pipeline security
+  scope: by_function
+  agentic: false
+  verify: The ML and agent build pipeline has access controls, signed commits and signed artifacts.
+  evidence: 'Pipeline configuration: access controls, signed-artifact policy, audit log.'
+- id: SUP-07
+  family: SUP
+  name: Model integrity verification
+  scope: by_function
+  agentic: false
+  verify: Model signatures and hashes are verified at deployment, and model files are scanned before load.
+  evidence: Signed model artifact and the verification log at deploy time.
+- id: SUP-08
+  family: SUP
+  name: Third-party model assessment
+  scope: by_function
+  agentic: false
+  verify: External and open models are assessed for security, bias and license risk before use.
+  evidence: Completed model assessment, filed.
+- id: SUP-09
+  family: SUP
+  name: Plugin, extension and MCP validation
+  scope: by_function
+  agentic: true
+  verify: Agent plugins, extensions and MCP servers are reviewed, signature-verified and pinned before
+    use, and come from an approved registry.
+  evidence: Review record and the approved registry entry.
+- id: SUP-10
+  family: SUP
+  name: Vector store security
+  scope: by_function
+  agentic: true
+  verify: Vector stores are protected against poisoning and unauthorized access, with need-to-know enforced
+    at retrieval.
+  evidence: Access control configuration and poisoning test results.
+- id: SUP-11
+  family: SUP
+  name: System prompt protection
+  scope: by_function
+  agentic: true
+  verify: System prompts resist extraction, and no secrets or privileged instructions sit in them.
+  evidence: Extraction test results and the system prompt review.
+- id: SUP-12
+  family: SUP
+  name: Embedding integrity
+  scope: by_function
+  agentic: true
+  verify: The embedding pipeline is integrity-checked, with hashes verified on generation and ingestion.
+  evidence: Pipeline audit and the hash verification log.
+- id: SUP-13
+  family: SUP
+  name: Agent action attestation
+  scope: by_function
+  agentic: true
+  verify: Critical agent actions are signed and attested, so an action can be tied to the agent, the person
+    and the inputs that produced it.
+  evidence: Signed action log and the verification procedure.

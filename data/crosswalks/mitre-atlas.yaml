@@ -1,0 +1,623 @@
+# MITRE ATLAS crosswalk
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: IDs kept; names taken from MITRE ATLAS release 2026.09 (Apache-2.0); explanatory text dropped.
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+framework: MITRE ATLAS crosswalk
+by_control:
+  POS-01:
+  - id: AML.M0023
+    name: AI Bill of Materials
+  POS-02:
+  - id: AML.TA0004
+    name: Initial Access
+  - id: AML.TA0011
+    name: Impact
+  - id: AML.M0035
+    name: AI Red Team
+  POS-03:
+  - id: AML.M0021
+    name: Generative AI Guidelines
+  POS-04:
+  - id: AML.M0021
+    name: Generative AI Guidelines
+  - id: AML.M0018
+    name: User Training
+  POS-05:
+  - id: AML.M0019
+    name: Control Access to AI Models and Data in Production
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  POS-06:
+  - id: AML.T0010
+    name: AI Supply Chain Compromise
+  - id: AML.M0014
+    name: Verify AI Artifacts
+  - id: AML.M0023
+    name: AI Bill of Materials
+  POS-07: []
+  POS-08:
+  - id: AML.M0005
+    name: Control Access to AI Models and Data at Rest
+  - id: AML.M0019
+    name: Control Access to AI Models and Data in Production
+  RUN-01:
+  - id: AML.T0051
+    name: LLM Prompt Injection
+  - id: AML.T0054
+    name: LLM Jailbreak
+  - id: AML.T0068
+    name: LLM Prompt Obfuscation
+  - id: AML.T0093
+    name: Prompt Infiltration via Public-Facing Application
+  - id: AML.M0020
+    name: Generative AI Guardrails
+  - id: AML.M0033
+    name: Input and Output Validation for AI Agent Components
+  RUN-02:
+  - id: AML.T0057
+    name: LLM Data Leakage
+  - id: AML.T0077
+    name: LLM Response Rendering
+  - id: AML.T0067
+    name: LLM Trusted Output Components Manipulation
+  - id: AML.T0102
+    name: Generate Malicious Commands
+  - id: AML.M0020
+    name: Generative AI Guardrails
+  - id: AML.M0033
+    name: Input and Output Validation for AI Agent Components
+  RUN-03:
+  - id: AML.T0034
+    name: Cost Harvesting
+  - id: AML.T0029
+    name: Denial of AI Service
+  - id: AML.T0024
+    name: Exfiltration via AI Inference API
+  - id: AML.M0004
+    name: Limit AI Service Query Volume and Rate
+  RUN-04:
+  - id: AML.T0034.002
+    name: Agentic Resource Consumption
+  - id: AML.T0029
+    name: Denial of AI Service
+  - id: AML.M0036
+    name: Limit AI Workload Resource Consumption
+  - id: AML.M0004
+    name: Limit AI Service Query Volume and Rate
+  RUN-05:
+  - id: AML.T0048
+    name: External Harms
+  - id: AML.T0054
+    name: LLM Jailbreak
+  - id: AML.T0088
+    name: Generate Deepfakes
+  - id: AML.M0020
+    name: Generative AI Guardrails
+  - id: AML.M0022
+    name: Generative AI Model Alignment
+  RUN-06:
+  - id: AML.T0129
+    name: Triggers in Multimodal Inputs
+  - id: AML.T0051.001
+    name: Indirect
+  - id: AML.T0043
+    name: Craft Adversarial Data
+  - id: AML.M0033
+    name: Input and Output Validation for AI Agent Components
+  RUN-07:
+  - id: AML.T0025
+    name: Exfiltration via Cyber Means
+  - id: AML.T0086
+    name: Exfiltration via AI Agent Tool Invocation
+  - id: AML.T0072
+    name: Cyber Communication Channel
+  - id: AML.T0008.005
+    name: AI Service Proxies
+  - id: AML.M0032
+    name: Segmentation of AI Agent Components
+  - id: AML.M0030
+    name: Restrict AI Agent Tool Invocation on Untrusted Data
+  RUN-08:
+  - id: AML.T0057
+    name: LLM Data Leakage
+  - id: AML.T0092
+    name: Manipulate User LLM Chat History
+  - id: AML.T0080.001
+    name: Thread
+  - id: AML.M0031
+    name: Memory Hardening
+  - id: AML.M0027
+    name: Single-User AI Agent Permissions Configuration
+  RUN-09:
+  - id: AML.T0029
+    name: Denial of AI Service
+  - id: AML.T0031
+    name: Erode AI Model Integrity
+  - id: AML.T0076
+    name: Corrupt AI Model
+  SHA-01:
+  - id: AML.T0047
+    name: AI-Enabled Product or Service
+  - id: AML.T0132
+    name: Misconfigured or Publicly Exposed AI Services
+  - id: AML.T0114
+    name: AI Service Web Interface
+  - id: AML.M0023
+    name: AI Bill of Materials
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  SHA-02:
+  - id: AML.M0021
+    name: Generative AI Guidelines
+  - id: AML.M0019
+    name: Control Access to AI Models and Data in Production
+  SHA-03:
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  - id: AML.T0012
+    name: Valid Accounts
+  - id: AML.T0040
+    name: AI Model Inference API Access
+  SHA-04:
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  - id: AML.T0034
+    name: Cost Harvesting
+  - id: AML.T0029
+    name: Denial of AI Service
+  SHA-05:
+  - id: AML.T0057
+    name: LLM Data Leakage
+  - id: AML.M0019
+    name: Control Access to AI Models and Data in Production
+  - id: AML.M0021
+    name: Generative AI Guidelines
+  OBS-01:
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  OBS-02:
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  OBS-03:
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  - id: AML.T0051
+    name: LLM Prompt Injection
+  - id: AML.T0086
+    name: Exfiltration via AI Agent Tool Invocation
+  - id: AML.T0101
+    name: Data Destruction via AI Agent Tool Invocation
+  OBS-04:
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  - id: AML.M0038
+    name: AI Agent Scope Drift Detection
+  OBS-05:
+  - id: AML.T0031
+    name: Erode AI Model Integrity
+  - id: AML.T0062
+    name: Discover LLM Hallucinations
+  - id: AML.T0060
+    name: Publish Hallucinated Entities
+  - id: AML.M0038
+    name: AI Agent Scope Drift Detection
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  OBS-06:
+  - id: AML.M0035
+    name: AI Red Team
+  - id: AML.M0016
+    name: Vulnerability Scanning
+  - id: AML.T0051
+    name: LLM Prompt Injection
+  - id: AML.T0054
+    name: LLM Jailbreak
+  - id: AML.T0080
+    name: AI Agent Context Poisoning
+  - id: AML.T0086
+    name: Exfiltration via AI Agent Tool Invocation
+  OBS-07:
+  - id: AML.T0048.002
+    name: Societal Harm
+  - id: AML.T0130
+    name: AI Agent Response Biasing
+  - id: AML.M0022
+    name: Generative AI Model Alignment
+  OBS-08:
+  - id: AML.M0038
+    name: AI Agent Scope Drift Detection
+  - id: AML.M0037
+    name: AI Agent Authority Expansion Controls
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  - id: AML.T0124
+    name: Autonomous Attack Orchestration
+  - id: AML.T0116
+    name: Autonomous Reconnaissance
+  - id: AML.T0117
+    name: Autonomous Attack-Path Adaptation
+  - id: AML.T0086
+    name: Exfiltration via AI Agent Tool Invocation
+  - id: AML.T0101
+    name: Data Destruction via AI Agent Tool Invocation
+  DAT-01:
+  - id: AML.T0057
+    name: LLM Data Leakage
+  - id: AML.T0025
+    name: Exfiltration via Cyber Means
+  - id: AML.T0086
+    name: Exfiltration via AI Agent Tool Invocation
+  - id: AML.M0019
+    name: Control Access to AI Models and Data in Production
+  - id: AML.M0030
+    name: Restrict AI Agent Tool Invocation on Untrusted Data
+  DAT-02:
+  - id: AML.T0057
+    name: LLM Data Leakage
+  - id: AML.T0024.000
+    name: Infer Training Data Membership
+  - id: AML.M0033
+    name: Input and Output Validation for AI Agent Components
+  DAT-03:
+  - id: AML.M0005
+    name: Control Access to AI Models and Data at Rest
+  - id: AML.M0019
+    name: Control Access to AI Models and Data in Production
+  - id: AML.T0036
+    name: Data from Information Repositories
+  - id: AML.T0085
+    name: Data from AI Services
+  DAT-04:
+  - id: AML.M0012
+    name: Encrypt Sensitive Information
+  - id: AML.T0025
+    name: Exfiltration via Cyber Means
+  DAT-05:
+  - id: AML.M0012
+    name: Encrypt Sensitive Information
+  - id: AML.M0005
+    name: Control Access to AI Models and Data at Rest
+  - id: AML.T0035
+    name: AI Artifact Collection
+  - id: AML.T0037
+    name: Data from Local System
+  DAT-06:
+  - id: AML.M0012
+    name: Encrypt Sensitive Information
+  - id: AML.T0057
+    name: LLM Data Leakage
+  - id: AML.T0037
+    name: Data from Local System
+  DAT-07:
+  - id: AML.M0005
+    name: Control Access to AI Models and Data at Rest
+  - id: AML.T0035
+    name: AI Artifact Collection
+  - id: AML.T0085
+    name: Data from AI Services
+  DAT-08:
+  - id: AML.M0025
+    name: Maintain AI Dataset Provenance
+  - id: AML.T0024.000
+    name: Infer Training Data Membership
+  DAT-09:
+  - id: AML.T0088
+    name: Generate Deepfakes
+  - id: AML.T0052.001
+    name: Deepfake-Assisted Phishing
+  - id: AML.M0034
+    name: Deepfake Detection
+  DAT-10:
+  - id: AML.T0048
+    name: External Harms
+  NHI-01:
+  - id: AML.T0012
+    name: Valid Accounts
+  - id: AML.T0091
+    name: Use Alternate Authentication Material
+  - id: AML.M0026
+    name: Privileged AI Agent Permissions Configuration
+  - id: AML.M0028
+    name: AI Agent Tools Permissions Configuration
+  - id: AML.M0019
+    name: Control Access to AI Models and Data in Production
+  NHI-02:
+  - id: AML.T0055
+    name: Unsecured Credentials
+  - id: AML.T0083
+    name: Credentials from AI Agent Configuration
+  - id: AML.T0082
+    name: RAG Credential Harvesting
+  - id: AML.T0098
+    name: AI Agent Tool Credential Harvesting
+  - id: AML.M0012
+    name: Encrypt Sensitive Information
+  - id: AML.M0005
+    name: Control Access to AI Models and Data at Rest
+  NHI-03:
+  - id: AML.T0012
+    name: Valid Accounts
+  - id: AML.T0055
+    name: Unsecured Credentials
+  - id: AML.T0091
+    name: Use Alternate Authentication Material
+  NHI-04:
+  - id: AML.T0091.000
+    name: Application Access Token
+  - id: AML.T0113
+    name: Steal Web Session Cookie
+  - id: AML.T0012
+    name: Valid Accounts
+  - id: AML.M0026
+    name: Privileged AI Agent Permissions Configuration
+  NHI-05:
+  - id: AML.T0073
+    name: Impersonation
+  - id: AML.T0074
+    name: Masquerading
+  - id: AML.T0118
+    name: Autonomous AI Agent Communication
+  - id: AML.M0032
+    name: Segmentation of AI Agent Components
+  - id: AML.M0026
+    name: Privileged AI Agent Permissions Configuration
+  NHI-06:
+  - id: AML.T0053
+    name: AI Agent Tool Invocation
+  - id: AML.T0051
+    name: LLM Prompt Injection
+  - id: AML.M0030
+    name: Restrict AI Agent Tool Invocation on Untrusted Data
+  - id: AML.M0037
+    name: AI Agent Authority Expansion Controls
+  - id: AML.M0038
+    name: AI Agent Scope Drift Detection
+  NHI-07:
+  - id: AML.T0053
+    name: AI Agent Tool Invocation
+  - id: AML.T0086
+    name: Exfiltration via AI Agent Tool Invocation
+  - id: AML.T0101
+    name: Data Destruction via AI Agent Tool Invocation
+  - id: AML.M0028
+    name: AI Agent Tools Permissions Configuration
+  - id: AML.M0030
+    name: Restrict AI Agent Tool Invocation on Untrusted Data
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  NHI-08:
+  - id: AML.T0103
+    name: Deploy AI Agent
+  - id: AML.T0108
+    name: AI Agent
+  - id: AML.T0124
+    name: Autonomous Attack Orchestration
+  - id: AML.T0034.002
+    name: Agentic Resource Consumption
+  - id: AML.M0037
+    name: AI Agent Authority Expansion Controls
+  - id: AML.M0036
+    name: Limit AI Workload Resource Consumption
+  NHI-09:
+  - id: AML.M0029
+    name: Human In-the-Loop for AI Agent Actions
+  - id: AML.M0037
+    name: AI Agent Authority Expansion Controls
+  - id: AML.T0101
+    name: Data Destruction via AI Agent Tool Invocation
+  - id: AML.T0086
+    name: Exfiltration via AI Agent Tool Invocation
+  - id: AML.T0048
+    name: External Harms
+  NHI-10:
+  - id: AML.T0118
+    name: Autonomous AI Agent Communication
+  - id: AML.T0080
+    name: AI Agent Context Poisoning
+  - id: AML.M0032
+    name: Segmentation of AI Agent Components
+  - id: AML.M0033
+    name: Input and Output Validation for AI Agent Components
+  NHI-11:
+  - id: AML.T0050
+    name: Command and Scripting Interpreter
+  - id: AML.T0105
+    name: Escape to Host
+  - id: AML.T0097
+    name: Virtualization/Sandbox Evasion
+  - id: AML.T0112
+    name: Machine Compromise
+  - id: AML.M0011
+    name: Restrict Library Loading
+  - id: AML.M0032
+    name: Segmentation of AI Agent Components
+  NHI-12:
+  - id: AML.T0080
+    name: AI Agent Context Poisoning
+  - id: AML.T0092
+    name: Manipulate User LLM Chat History
+  - id: AML.T0094
+    name: Delay Execution of LLM Instructions
+  - id: AML.M0031
+    name: Memory Hardening
+  - id: AML.M0027
+    name: Single-User AI Agent Permissions Configuration
+  SUP-01:
+  - id: AML.T0010.003
+    name: Model
+  - id: AML.T0115.001
+    name: Models
+  - id: AML.T0111
+    name: AI Supply Chain Reputation Inflation
+  - id: AML.M0023
+    name: AI Bill of Materials
+  - id: AML.M0014
+    name: Verify AI Artifacts
+  SUP-02:
+  - id: AML.T0109
+    name: AI Supply Chain Rug Pull
+  - id: AML.T0010.003
+    name: Model
+  - id: AML.T0076
+    name: Corrupt AI Model
+  - id: AML.M0014
+    name: Verify AI Artifacts
+  - id: AML.M0017
+    name: AI Model Distribution Methods
+  SUP-03:
+  - id: AML.T0031
+    name: Erode AI Model Integrity
+  - id: AML.T0076
+    name: Corrupt AI Model
+  - id: AML.T0109
+    name: AI Supply Chain Rug Pull
+  SUP-04:
+  - id: AML.T0020
+    name: Training Data Poisoning
+  - id: AML.T0010.002
+    name: Data
+  - id: AML.T0059
+    name: Erode Dataset Integrity
+  - id: AML.M0025
+    name: Maintain AI Dataset Provenance
+  - id: AML.M0007
+    name: Sanitize Training Data
+  SUP-05:
+  - id: AML.M0025
+    name: Maintain AI Dataset Provenance
+  - id: AML.T0024.000
+    name: Infer Training Data Membership
+  SUP-06:
+  - id: AML.T0010.001
+    name: AI Software
+  - id: AML.T0010.004
+    name: Container Registry
+  - id: AML.T0119
+    name: Exploit Automated Artifact Processing Pipeline
+  - id: AML.T0018
+    name: Manipulate AI Model
+  - id: AML.M0013
+    name: Code Signing
+  - id: AML.M0014
+    name: Verify AI Artifacts
+  - id: AML.M0016
+    name: Vulnerability Scanning
+  SUP-07:
+  - id: AML.T0010.003
+    name: Model
+  - id: AML.T0018.002
+    name: Embed Malware
+  - id: AML.T0011.000
+    name: Unsafe AI Artifacts
+  - id: AML.T0115.001
+    name: Models
+  - id: AML.M0014
+    name: Verify AI Artifacts
+  - id: AML.M0013
+    name: Code Signing
+  - id: AML.M0008
+    name: Validate AI Model
+  SUP-08:
+  - id: AML.T0010.003
+    name: Model
+  - id: AML.T0111
+    name: AI Supply Chain Reputation Inflation
+  - id: AML.T0115.001
+    name: Models
+  - id: AML.M0008
+    name: Validate AI Model
+  - id: AML.M0014
+    name: Verify AI Artifacts
+  - id: AML.M0023
+    name: AI Bill of Materials
+  SUP-09:
+  - id: AML.T0010.005
+    name: AI Agent Tool
+  - id: AML.T0110
+    name: AI Agent Tool Poisoning
+  - id: AML.T0011.002
+    name: Poisoned AI Agent Tool
+  - id: AML.T0115.002
+    name: AI Agent Tools
+  - id: AML.T0099
+    name: AI Agent Tool Data Poisoning
+  - id: AML.M0014
+    name: Verify AI Artifacts
+  - id: AML.M0013
+    name: Code Signing
+  - id: AML.M0028
+    name: AI Agent Tools Permissions Configuration
+  - id: AML.M0023
+    name: AI Bill of Materials
+  SUP-10:
+  - id: AML.T0070
+    name: RAG Poisoning
+  - id: AML.T0071
+    name: False RAG Entry Injection
+  - id: AML.T0064
+    name: Gather RAG-Indexed Targets
+  - id: AML.T0066
+    name: Retrieval Content Crafting
+  - id: AML.T0082
+    name: RAG Credential Harvesting
+  - id: AML.T0085.000
+    name: RAG Databases
+  - id: AML.M0005
+    name: Control Access to AI Models and Data at Rest
+  - id: AML.M0019
+    name: Control Access to AI Models and Data in Production
+  - id: AML.M0033
+    name: Input and Output Validation for AI Agent Components
+  SUP-11:
+  - id: AML.T0056
+    name: Extract LLM System Prompt
+  - id: AML.T0069
+    name: Discover LLM System Information
+  - id: AML.T0084
+    name: Discover AI Agent Configuration
+  - id: AML.T0083
+    name: Credentials from AI Agent Configuration
+  - id: AML.M0020
+    name: Generative AI Guardrails
+  - id: AML.M0000
+    name: Limit Public Release of Information
+  SUP-12:
+  - id: AML.T0070
+    name: RAG Poisoning
+  - id: AML.T0010.002
+    name: Data
+  - id: AML.T0059
+    name: Erode Dataset Integrity
+  - id: AML.T0099
+    name: AI Agent Tool Data Poisoning
+  - id: AML.M0014
+    name: Verify AI Artifacts
+  - id: AML.M0025
+    name: Maintain AI Dataset Provenance
+  - id: AML.M0007
+    name: Sanitize Training Data
+  SUP-13:
+  - id: AML.M0024
+    name: AI Telemetry Logging
+  - id: AML.M0029
+    name: Human In-the-Loop for AI Agent Actions
+  - id: AML.M0013
+    name: Code Signing
+  - id: AML.T0074
+    name: Masquerading
+  - id: AML.T0101
+    name: Data Destruction via AI Agent Tool Invocation
+  - id: AML.T0053
+    name: AI Agent Tool Invocation

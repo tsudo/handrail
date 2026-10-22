@@ -1,0 +1,146 @@
+# Derivation record: where data/functions.yaml, controls.yaml and crosswalks/ came from.
+# Apache-2.0. See NOTICE.
+
+derivation_source:
+  name: AI Security Risk Workbook v3.0
+  author: Jason Robbins
+  licence: Apache-2.0
+  repository: https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook
+  commit: b775ec31a34e7788bb5b75fc55111d5a51d991b2
+  file: AI_Security_Risk_v3.0.xlsx
+  sha256: 525d17b638529b136b0ccbe1db663fe99e86115bfc1ad4364057dff127d32274
+  derived_on: '2026-10-22'
+source_ids:
+  controls:
+  - DAT-01
+  - DAT-02
+  - DAT-03
+  - DAT-04
+  - DAT-05
+  - DAT-06
+  - DAT-07
+  - DAT-08
+  - DAT-09
+  - DAT-10
+  - NHI-01
+  - NHI-02
+  - NHI-03
+  - NHI-04
+  - NHI-05
+  - NHI-06
+  - NHI-07
+  - NHI-08
+  - NHI-09
+  - NHI-10
+  - NHI-11
+  - NHI-12
+  - OBS-01
+  - OBS-02
+  - OBS-03
+  - OBS-04
+  - OBS-05
+  - OBS-06
+  - OBS-07
+  - OBS-08
+  - POS-01
+  - POS-02
+  - POS-03
+  - POS-04
+  - POS-05
+  - POS-06
+  - POS-07
+  - POS-08
+  - RUN-01
+  - RUN-02
+  - RUN-03
+  - RUN-04
+  - RUN-05
+  - RUN-06
+  - RUN-07
+  - RUN-08
+  - RUN-09
+  - SHA-01
+  - SHA-02
+  - SHA-03
+  - SHA-04
+  - SHA-05
+  - SUP-01
+  - SUP-02
+  - SUP-03
+  - SUP-04
+  - SUP-05
+  - SUP-06
+  - SUP-07
+  - SUP-08
+  - SUP-09
+  - SUP-10
+  - SUP-11
+  - SUP-12
+  - SUP-13
+  functions:
+  - Time, date and timezone calculations
+  - Public data lookups (weather, rates, reference APIs)
+  - Geographic and mapping information
+  - Basic system health checks (read-only)
+  - Static file read (public or non-sensitive)
+  - Online search interfaces
+  - Web data extraction and scraping
+  - Automated task execution (scoped)
+  - Log processing and event analysis
+  - Enterprise data queries (read-only)
+  - Internal documentation retrieval
+  - Code repository read access
+  - Email, chat and messaging read access
+  - LLM prompt processing (text)
+  - Multi-modal input processing (image, audio, video)
+  - AI response generation (text)
+  - Vector database queries (read-only)
+  - Prompt chaining and workflow orchestration
+  - Prompt caching across requests
+  - 'MCP server: vendor-signed or verified'
+  - Automated file handling (read and write)
+  - Filesystem traversal outside the workspace
+  - Code repository write access
+  - Enterprise file indexing and search
+  - Automated messaging and email send
+  - AI memory and context storage (user-scoped)
+  - Agent memory write-back to shared stores
+  - Business intelligence system updates
+  - HR, financial or PII system access
+  - Cloud storage access (S3, GCS, Azure Blob)
+  - External API calls (outbound, allowlisted)
+  - Code execution in an ephemeral sandbox
+  - RAG with confidential documents
+  - Tool and function calling by AI agents
+  - Vector database write access
+  - Human-in-the-loop approval workflows
+  - 'MCP server: community or open source'
+  - Sub-agent spawning (bounded)
+  - Dynamic tool loading at runtime
+  - Long-running or background agents
+  - Model-in-the-loop decision routing
+  - Fine-tuning with customer or non-production data
+  - Content generation for external publication
+  - Autonomous web browsing
+  - Log analysis containing PII or regulated data
+  - Shell or bash execution
+  - Privileged system automation (production infrastructure)
+  - Unrestricted code execution (no sandbox)
+  - Model fine-tuning with production data
+  - Infrastructure automation (Terraform, Kubernetes)
+  - Autonomous agent with unrestricted API access
+  - Multi-agent orchestration (autonomous)
+  - Agent task delegation or unbounded spawning
+  - Autonomous decision-making on consequential actions
+  - 'Computer use: screen capture, mouse and keyboard control'
+  - 'MCP server: custom or self-built (unreviewed)'
+  - Dynamic model swap at runtime
+counts:
+  controls: 65
+  functions: 57
+  families: 7
+v2_id_range: Functions or controls added by Handrail use the prefix TS- and never reuse a source ID.
+atlas_source:
+  release: '2026.09'
+  file: dist/v6/ATLAS-2026.09.yaml
+  sha256: 935efa93e28294432d3e2f537eb94991ef8d1f8c58341cd360ea3321ddb66688

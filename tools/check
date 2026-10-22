@@ -1,0 +1,464 @@
+#!/usr/bin/env python3
+# Copyright 2026 Keith Crawford. Licensed under the Apache License, Version 2.0.
+# Record checks (highest rating cited, every gap has a finding, required
+# controls equal the union rule) follow the rules of the AI Security Risk
+# Workbook v3.0 by Jason Robbins (Apache-2.0), reimplemented here. See NOTICE.
+"""Validate the Handrail data, templates, plugin copies and example records.
+
+Usage: python tools/check [repo_root] [--records FOLDER]
+
+With --records, also checks every *.record.md under FOLDER (your own
+assessment records) against the same rules as the examples.
+
+It checks that each record is consistent with itself, the model and the
+catalog. It cannot tell whether what a record says is true, and it cannot
+verify who a confirmer or approver is: the person who writes the record
+could type any name. The named approver who signs the decision, and the
+audit trail around them, are those controls.
+
+Exits 0 when everything passes. Each failure prints one line starting with a
+named error code:
+
+  E-MODEL            data/model.yaml is missing, unreadable or malformed
+  E-CATALOG          functions.yaml or controls.yaml is malformed or inconsistent
+  E-ID-PROVENANCE    a control or function is not in the derivation source and lacks the TS- prefix
+  E-CROSSWALK        a crosswalk entry breaks the citation rules (CSA and SOC 2 bare IDs only, etc.)
+  E-PLUGIN-COPY      a skill's bundled file differs from its source, a file or NOTICE is missing,
+                     or SKILL.md pins a model version or SHA-256 that does not match data/model.yaml
+  E-TEMPLATE         a template's rubric block disagrees with model.yaml
+  E-RECORD-TIER      a record's scores or tier are incomplete or invalid, the tier is not the worst
+                     rating, or the lethal trifecta is present in the scores without Severe or a
+                     broken leg
+  E-RECORD-GAP       a control marked Gap has no finding naming it
+  E-RECORD-CONTROLS  a record's required controls differ from the union rule
+  E-RECORD-FLAGS     a record's agentic or impact-assessment flag disagrees with its scores
+  E-RECORD-ROUTE     a record routed on the designed path for regulated data does not meet its conditions
+  E-EXPECTED         a record's tier differs from examples/expected-tiers.yaml
+  E-PROFILE          an organization profile names an unknown tier, rank, data class or trigger
+  E-LINK             a relative Markdown link points at a file that does not exist
+"""
+import csv
+import hashlib
+import re
+import sys
+from pathlib import Path
+
+try:
+    import yaml
+except ImportError:  # pragma: no cover
+    print("E-MODEL PyYAML is required: pip install pyyaml")
+    sys.exit(2)
+
+args = sys.argv[1:]
+if any(a in ("-h", "--help") for a in args):
+    print(__doc__)
+    sys.exit(0)
+RECORDS = None
+if "--records" in args:
+    i = args.index("--records")
+    if i + 1 >= len(args):
+        print("E-RECORD-TIER --records needs a folder")
+        sys.exit(2)
+    RECORDS = Path(args[i + 1])
+    del args[i:i + 2]
+    if not RECORDS.is_dir():
+        print(f"E-RECORD-TIER --records folder {RECORDS} does not exist")
+        sys.exit(2)
+ROOT = Path(args[0]) if args else Path(__file__).resolve().parent.parent
+RANK = {"low": 1, "medium": 2, "high": 3, "severe": 4}
+errors = []
+
+
+def err(code, msg):
+    errors.append(f"{code} {msg}")
+
+
+def load(path, code):
+    try:
+        return yaml.safe_load(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        err(code, f"{path.relative_to(ROOT)} is missing")
+    except yaml.YAMLError as e:
+        err(code, f"{path.relative_to(ROOT)} is not valid YAML: {str(e).splitlines()[0]}")
+    return None
+
+
+# ---- model -----------------------------------------------------------------
+model = load(ROOT / "data/model.yaml", "E-MODEL")
+subq = {}
+if model:
+    for s in model.get("surfaces", []):
+        for q in s.get("sub_questions", []):
+            qid = f"{s['id']}.{q['id']}"
+            subq[qid] = q
+            if set(q.get("levels", {})) != set(RANK):
+                err("E-MODEL", f"{qid} does not define all four levels")
+    quick = model.get("scoring", {}).get("quick_form", {}).get("sub_questions", [])
+    flagged = sorted(k for k, q in subq.items() if q.get("quick"))
+    if sorted(quick) != flagged:
+        err("E-MODEL", f"quick_form list {sorted(quick)} differs from quick flags {flagged}")
+    for t in model.get("tiers", []):
+        for lvl in ("level_1", "level_2", "level_3"):
+            if lvl not in t:
+                err("E-MODEL", f"tier {t.get('id')} has no {lvl} routing")
+
+# ---- catalog -----------------------------------------------------------------
+controls_doc = load(ROOT / "data/controls.yaml", "E-CATALOG") or {}
+functions_doc = load(ROOT / "data/functions.yaml", "E-CATALOG") or {}
+upstream = load(ROOT / "data/upstream.yaml", "E-CATALOG") or {}
+controls = {c["id"]: c for c in controls_doc.get("controls", [])}
+families = {f["code"] for f in controls_doc.get("families", [])}
+functions = {f["id"]: f for f in functions_doc.get("functions", [])}
+for cid, c in controls.items():
+    if c.get("family") not in families:
+        err("E-CATALOG", f"control {cid} has unknown family {c.get('family')}")
+    if c.get("scope") not in ("every_tool", "vendor_products", "by_function"):
+        err("E-CATALOG", f"control {cid} has unknown scope {c.get('scope')}")
+for fid, f in functions.items():
+    if f.get("risk") not in RANK:
+        err("E-CATALOG", f"function {fid} has unknown risk {f.get('risk')}")
+    for cid in f.get("controls", []):
+        if cid not in controls:
+            err("E-CATALOG", f"function {fid} names unknown control {cid}")
+src = upstream.get("source_ids", {})
+src_controls, src_functions = set(src.get("controls", [])), set(src.get("functions", []))
+for cid in controls:
+    if cid not in src_controls and not cid.startswith("TS-"):
+        err("E-ID-PROVENANCE", f"control {cid} is not in the derivation source and has no TS- prefix")
+for fid, f in functions.items():
+    if f.get("name") not in src_functions and not fid.startswith("ts-"):
+        err("E-ID-PROVENANCE", f"function {fid} is not in the derivation source and has no ts- prefix")
+
+# ---- crosswalks ----------------------------------------------------------------
+BARE = {
+    "csa-aicm.yaml": re.compile(r"^[A-Z&]{2,4}-\d{2}(\.\d+)?$"),
+    "soc2.yaml": re.compile(r"^(CC\d\.\d+|A1\.\d|C1\.\d|PI1\.\d|P\d\.\d)$"),
+}
+for path in sorted((ROOT / "data/crosswalks").glob("*.yaml")):
+    doc = load(path, "E-CROSSWALK") or {}
+    for cid, entries in (doc.get("by_control") or {}).items():
+        if cid not in controls:
+            err("E-CROSSWALK", f"{path.name}: unknown control {cid}")
+        if path.name in BARE:
+            for e in entries or []:
+                if not isinstance(e, str) or not BARE[path.name].match(e):
+                    err("E-CROSSWALK", f"{path.name}: {cid} entry {e!r} is not a bare identifier")
+        if path.name == "owasp.yaml":
+            for e in entries or []:
+                if set(e) != {"id", "name"} or len(e["name"].split()) > 5:
+                    err("E-CROSSWALK", f"owasp.yaml: {cid} entry {e} must be an ID with a short name only")
+        if path.name == "iso42001.yaml":
+            for e in entries or []:
+                if set(e) != {"ref", "title"} or len(e["title"]) > 80:
+                    err("E-CROSSWALK", f"iso42001.yaml: {cid} entry {e} must be a number with a short title only")
+
+# ---- plugin copies ---------------------------------------------------------------
+plugin = ROOT / "plugin"
+SKILL_FILES = {
+    "handrail-assessor": {"model.yaml": "data/model.yaml", "functions.yaml": "data/functions.yaml",
+                                "controls.yaml": "data/controls.yaml", "atlas-ids.yaml": "data/atlas-ids.yaml",
+                                "owasp.yaml": "data/crosswalks/owasp.yaml",
+                                "assessment-record.md": "kit/assessment-record.md", "inventory.csv": "kit/inventory.csv"},
+    "handrail-advisor": {"model.yaml": "data/model.yaml", "profile.yaml": "kit/profile.yaml"},
+}
+model_path = ROOT / "data/model.yaml"
+model_hash = hashlib.sha256(model_path.read_bytes()).hexdigest() if model_path.exists() else None
+if plugin.exists():
+    for skill, files in SKILL_FILES.items():
+        sdir = plugin / "skills" / skill
+        for name, src in files.items():
+            a, b = ROOT / src, sdir / "data" / name
+            rel = b.relative_to(ROOT).as_posix()
+            if not b.exists():
+                err("E-PLUGIN-COPY", f"{rel} is missing")
+            elif a.exists() and a.read_bytes() != b.read_bytes():
+                err("E-PLUGIN-COPY", f"{rel} differs from {src}")
+        if not (sdir / "NOTICE").exists():
+            err("E-PLUGIN-COPY", f"plugin/skills/{skill}/NOTICE is missing")
+        skill_md = sdir / "SKILL.md"
+        m = re.match(r"^---\n(.*?)\n---\n", skill_md.read_text(encoding="utf-8"), re.S) if skill_md.exists() else None
+        meta = ((yaml.safe_load(m.group(1)) or {}).get("metadata") or {}) if m else {}
+        if model and str(meta.get("model_version")) != str(model.get("schema_version")):
+            err("E-PLUGIN-COPY", f"plugin/skills/{skill}/SKILL.md pins model_version {meta.get('model_version')}, data/model.yaml is {model.get('schema_version')}")
+        if model_hash and meta.get("model_sha256") != model_hash:
+            err("E-PLUGIN-COPY", f"plugin/skills/{skill}/SKILL.md model_sha256 does not match data/model.yaml ({model_hash[:12]}...)")
+
+# ---- templates -------------------------------------------------------------------
+BLOCK = re.compile(r"<!-- rubric: ([a-z_.]+) -->(.*?)<!-- /rubric -->", re.S)
+LINE = re.compile(r"^\s*[-|]\s*\**(Low|Medium|High|Severe)\**[:|]\**\s*\|?\s*(.+?)\s*\|?\s*$", re.M)
+norm = lambda t: re.sub(r"\s+", " ", t.strip().rstrip("|").strip())
+for path in sorted(ROOT.glob("kit/**/*.md")) + sorted(ROOT.glob("docs/*.md")):
+    for qid, body in BLOCK.findall(path.read_text(encoding="utf-8")):
+        if qid not in subq:
+            err("E-TEMPLATE", f"{path.relative_to(ROOT)}: rubric block names unknown question {qid}")
+            continue
+        found = {lvl.lower(): norm(txt) for lvl, txt in LINE.findall(body)}
+        for lvl, txt in subq[qid]["levels"].items():
+            if found.get(lvl) != norm(txt):
+                err("E-TEMPLATE", f"{path.relative_to(ROOT)}: {qid} {lvl} text differs from model.yaml")
+
+# ---- records ---------------------------------------------------------------------
+FRONT = re.compile(r"^---\n(.*?)\n---\n", re.S)
+expected = load(ROOT / "examples/expected-tiers.yaml", "E-EXPECTED") if (ROOT / "examples").exists() else {}
+expected = (expected or {}).get("tiers", {})
+seen_records = set()
+record_paths = sorted(ROOT.glob("examples/**/*.record.md"))
+if RECORDS:
+    record_paths += sorted(RECORDS.glob("**/*.record.md"))
+for path in record_paths:
+    m = FRONT.match(path.read_text(encoding="utf-8"))
+    try:
+        rel = path.relative_to(ROOT).as_posix()
+    except ValueError:
+        rel = path.as_posix()
+    if not m:
+        err("E-RECORD-TIER", f"{rel}: no YAML front matter")
+        continue
+    try:
+        rec = yaml.safe_load(m.group(1))
+    except yaml.YAMLError as e:
+        err("E-RECORD-TIER", f"{rel}: front matter is not valid YAML: {str(e).splitlines()[0]}")
+        continue
+    if not isinstance(rec, dict):
+        err("E-RECORD-TIER", f"{rel}: front matter is not a mapping")
+        continue
+    rid = rec.get("record_id")
+    seen_records.add(rid)
+    scores = {k: v for k, v in (rec.get("scores") or {}).items()}
+    missing_q = sorted(set(subq) - set(scores)) if subq else []
+    bad_q = sorted(k for k, v in scores.items() if str(v).lower() not in RANK)
+    if missing_q or bad_q:
+        err("E-RECORD-TIER", f"{rel}: scores incomplete or invalid (missing {missing_q}, not Low/Medium/High/Severe {bad_q})")
+    if str(rec.get("tier", "")).lower() not in RANK:
+        err("E-RECORD-TIER", f"{rel}: tier {rec.get('tier')!r} is not Low, Medium, High or Severe")
+    kind = str(rec.get("kind", "")).strip().lower()
+    if kind not in ("vendor product", "vendor-added feature", "internal build"):
+        err("E-RECORD-CONTROLS", f"{rel}: kind {rec.get('kind')!r} is not vendor product, vendor-added feature or internal build")
+    tri = rec.get("trifecta") or {}
+    rk0 = {k: RANK.get(str(v).lower(), 0) for k, v in scores.items()}
+    confirmed = set()
+    requester = str(rec.get("requester") or "").strip().lower()
+    for c in rec.get("confirmations") or []:
+        if not isinstance(c, dict):
+            continue
+        if not all(str(c.get(k) or "").strip() for k in ("question", "by", "role", "how", "date")):
+            err("E-RECORD-TIER", f"{rel}: a confirmations entry needs question, by, role, how and date")
+            continue
+        req_tokens = {t for t in requester.replace(",", " ").split() if len(t) > 2}
+        by_tokens = {t for t in str(c["by"]).lower().replace(",", " ").split() if len(t) > 2}
+        if requester and (str(c["by"]).strip().lower() == requester or (by_tokens and by_tokens <= req_tokens)):
+            err("E-RECORD-TIER", f"{rel}: {c['question']} is confirmed by the requester; it needs someone else")
+            continue
+        confirmed.add(str(c["question"]).strip().lower())
+    exists = tri.get("exfiltration_path_exists")
+    if not isinstance(exists, bool):
+        err("E-RECORD-TIER", f"{rel}: trifecta.exfiltration_path_exists must be true or false")
+        exists = True
+    sens, untrusted = rk0.get("data.sensitivity", 0), rk0.get("capability.untrusted_input", 0)
+    derived = sens >= 3 and untrusted >= 2 and exists
+    if tri.get("applies") and RANK.get(str(rec.get("tier", "")).lower(), 0) != 4:
+        err("E-RECORD-TIER", f"{rel}: the lethal trifecta applies but the tier is {rec.get('tier')}, not Severe")
+    if derived and not tri.get("applies"):
+        if not str(tri.get("broken_leg") or "").strip() or "trifecta" not in confirmed:
+            err("E-RECORD-TIER", f"{rel}: the scores complete the lethal trifecta; a broken leg needs broken_leg "
+                                 f"and a confirmations entry for 'trifecta' (by, how, date)")
+    if sens >= 3 and untrusted >= 2 and exists is False and "exfiltration_path" not in confirmed:
+        err("E-RECORD-TIER", f"{rel}: no exfiltration path is claimed for a tool with the other two legs; "
+                             f"it needs a confirmations entry for 'exfiltration_path'")
+    if sens >= 3 and untrusted < 2 and exists and "capability.untrusted_input" not in confirmed:
+        err("E-RECORD-TIER", f"{rel}: untrusted input below Medium removes a trifecta leg; it needs a "
+                             f"confirmations entry for 'capability.untrusted_input'")
+    if sens < 3 and untrusted >= 2 and exists and "data.sensitivity" not in confirmed:
+        err("E-RECORD-TIER", f"{rel}: sensitivity below High with the other two legs present needs a "
+                             f"confirmations entry for 'data.sensitivity'")
+    arch = str(rec.get("architecture") or "").strip()
+    arch_ids = {a["id"] for s_ in (model or {}).get("surfaces", []) for a in s_.get("architecture_types", [])}
+    if arch not in arch_ids:
+        err("E-RECORD-FLAGS", f"{rel}: architecture {arch!r} is not one of {sorted(arch_ids)}")
+    elif arch in ("agentic", "mcp_connected") and not rec.get("agentic"):
+        err("E-RECORD-FLAGS", f"{rel}: architecture {arch} needs agentic: true")
+    prof_ref = str(rec.get("profile") or "default")
+    prof_doc = {}
+    prof_path = None
+    if prof_ref != "default":
+        cands = [ROOT / prof_ref] + ([RECORDS / prof_ref, path.parent / prof_ref] if RECORDS else [path.parent / prof_ref])
+        prof_path = next((c for c in cands if c.exists()), None)
+        if prof_path is None:
+            err("E-RECORD-TIER", f"{rel}: profile {prof_ref} not found")
+        else:
+            prof_doc = yaml.safe_load(prof_path.read_text(encoding="utf-8")) or {}
+            ceil = prof_doc.get("ceilings") or {}
+            class_rank = {c["id"]: RANK[c["rating"]] for c in (model or {}).get("data_classes", [])}
+            crossed = []
+            if ceil.get("data_class") in class_rank and sens > class_rank[ceil["data_class"]]:
+                crossed.append("data_class")
+            if str(ceil.get("autonomy", "")).lower() in RANK and rk0.get("capability.autonomy", 0) > RANK[str(ceil["autonomy"]).lower()]:
+                crossed.append("autonomy")
+            if crossed and (RANK.get(str(rec.get("tier", "")).lower(), 0) != 4 or not rec.get("ceiling_cited")):
+                err("E-RECORD-TIER", f"{rel}: crosses the profile ceiling {crossed} but is not Severe with ceiling_cited")
+    route = str(rec.get("route") or "standard").strip().lower()
+    if route not in ("standard", "exception", "designed_path"):
+        err("E-RECORD-ROUTE", f"{rel}: route {rec.get('route')!r} is not standard, exception or designed_path")
+    rdp = (model or {}).get("regulated_data_path") or {}
+    treatments = [t["control"] for t in rdp.get("treatments", [])]
+    if route == "designed_path":
+        why = []
+        if RANK.get(str(rec.get("tier", "")).lower(), 0) != 4:
+            why.append("tier is not Severe (the inherent rating stays Severe)")
+        if sens != 4 or any(v == 4 for k, v in rk0.items() if k != "data.sensitivity"):
+            why.append("data sensitivity must be the only Severe rating")
+        if tri.get("applies") or derived:
+            why.append("the lethal trifecta is present in the scores (a broken leg is not enough on the designed path)")
+        for q in ("data.contract_coverage", "data.persistence", "treatments"):
+            if q not in confirmed:
+                why.append(f"needs a confirmations entry for '{q}' (document reviewed or control checked in place)")
+        examples_dir = (ROOT / "examples").resolve()
+        record_in_examples = examples_dir in path.resolve().parents
+        profile_in_examples = prof_path is not None and examples_dir in prof_path.resolve().parents
+        if profile_in_examples and not record_in_examples:
+            why.append("a record outside examples/ cannot use an example profile")
+        if not requester:
+            why.append("the record names no requester, so its confirmations cannot be shown to come from someone else")
+        if not str(prof_doc.get("approved_by") or "").strip() or "[" in str(prof_doc.get("approved_by")) \
+                or not str(prof_doc.get("approved_on") or "")[:4].isdigit():
+            why.append("the profile has no real approver and approval date")
+        if rk0.get("data.contract_coverage", 0) != 1:
+            why.append("contract coverage is not Low")
+        if rk0.get("data.persistence", 0) > 2:
+            why.append("retention and training is above Medium")
+        paths = {str(x.get("id")) for x in (prof_doc.get("regulated_data_paths") or []) if isinstance(x, dict)}
+        if str(rec.get("designed_path") or "") not in paths:
+            why.append(f"designed_path {rec.get('designed_path')!r} is not declared in the record's profile")
+        status = {c.get("id"): c.get("status") for c in rec.get("controls") or [] if isinstance(c, dict)}
+        not_ok = [c for c in treatments if status.get(c) != "Identified"]
+        if not_ok:
+            why.append(f"treatments not Identified: {not_ok}")
+        for w in why:
+            err("E-RECORD-ROUTE", f"{rel}: designed path: {w}")
+    tac = rec.get("tier_as_configured")
+    if tac not in (None, "") and RANK.get(str(tac).lower(), 0) < RANK.get(str(rec.get("tier", "")).lower(), 0):
+        err("E-RECORD-TIER", f"{rel}: tier_as_configured {tac} is lower than the tier {rec.get('tier')}")
+    worst = max((RANK.get(str(v).lower(), 0) for v in scores.values()), default=0)
+    tier = RANK.get(str(rec.get("tier", "")).lower(), 0)
+    escalated = bool(rec.get("ceiling_cited")) or bool((rec.get("trifecta") or {}).get("applies"))
+    if tier != worst and not (escalated and tier == 4):
+        err("E-RECORD-TIER", f"{rel}: tier {rec.get('tier')} is not the worst rating and no ceiling or trifecta is cited")
+    fn_ids = rec.get("functions") or []
+    for fid in fn_ids:
+        if fid not in functions:
+            err("E-RECORD-CONTROLS", f"{rel}: unknown function {fid}")
+    required = set()
+    for fid in fn_ids:
+        required |= set(functions.get(fid, {}).get("controls", []))
+    required |= {c for c, d in controls.items() if d["scope"] == "every_tool"}
+    if kind in ("vendor product", "vendor-added feature"):
+        required |= {c for c, d in controls.items() if d["scope"] == "vendor_products"}
+    elif rec.get("third_party_model") is True and "POS-06" in controls:
+        required.add("POS-06")
+    if route == "designed_path":
+        required |= {c for c in treatments if c in controls}
+    rk = {k: RANK.get(str(v).lower(), 0) for k, v in scores.items()}
+    trifecta = bool((rec.get("trifecta") or {}).get("applies"))
+    needs_ia = trifecta or any(v >= 3 for k, v in rk.items() if k.startswith("people."))
+    if bool(rec.get("impact_assessment_required")) != needs_ia:
+        err("E-RECORD-FLAGS", f"{rel}: impact_assessment_required is {rec.get('impact_assessment_required')}, "
+                              f"but the scores say {needs_ia} (People High or above, or the trifecta)")
+    needs_agent = rk.get("capability.autonomy", 0) >= 2 or any(functions.get(f, {}).get("agentic") for f in fn_ids)
+    if needs_agent and not rec.get("agentic"):
+        err("E-RECORD-FLAGS", f"{rel}: agentic is false, but autonomy is Medium or above or a listed function is agentic")
+    listed = {c["id"] for c in rec.get("controls") or []}
+    if listed != required:
+        missing, extra = sorted(required - listed), sorted(listed - required)
+        err("E-RECORD-CONTROLS", f"{rel}: required controls differ (missing {missing}, extra {extra})")
+    named = {g for f in rec.get("findings") or [] for g in f.get("controls", [])}
+    for c in rec.get("controls") or []:
+        if c.get("status") == "Gap" and c["id"] not in named:
+            err("E-RECORD-GAP", f"{rel}: {c['id']} is a Gap with no finding")
+    if rid in expected and str(expected[rid]).lower() != str(rec.get("tier", "")).lower():
+        err("E-EXPECTED", f"{rel}: tier {rec.get('tier')} differs from the frozen expectation {expected[rid]}")
+RATED_COLS = ["Sensitivity", "Retention", "Contract", "Audience", "Reliance", "Impact", "Function",
+              "Autonomy", "Reversibility", "Outside content", "Disclosure"]
+inventory_paths = sorted(ROOT.glob("examples/**/inventory.csv"))
+if RECORDS:
+    inventory_paths += sorted(RECORDS.glob("**/inventory.csv"))
+for path in inventory_paths:
+    try:
+        rel = path.relative_to(ROOT).as_posix()
+    except ValueError:
+        rel = path.as_posix()
+    with open(path, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            rid = (row.get("ID") or "").strip()
+            if not rid:
+                continue
+            seen_records.add(rid)
+            ratings = [RANK.get((row.get(c) or "").replace("(u)", "").strip().lower(), 0) for c in RATED_COLS]
+            tier_text = row.get("Tier", "")
+            tier = RANK.get(tier_text.split("(")[0].strip().lower(), 0)
+            trifecta = (row.get("Trifecta") or "").strip().lower() == "applies"
+            if tier != (4 if trifecta else max(ratings)):
+                err("E-RECORD-TIER", f"{rel}: {rid} tier {tier_text!r} is not the worst of its ratings (or Severe for the trifecta)")
+            provisional = any("(u)" in (row.get(c) or "") for c in RATED_COLS)
+            if "Provisional?" in row and (row["Provisional?"].strip().lower() == "yes") != provisional:
+                err("E-RECORD-TIER", f"{rid}: Provisional? is {row['Provisional?']!r} but the (u) marks say {provisional}")
+            if rid in expected and str(expected[rid]).lower() != tier_text.split("(")[0].strip().lower():
+                err("E-EXPECTED", f"{rel}: {rid} tier {tier_text!r} differs from the frozen expectation {expected[rid]}")
+for rid in expected:
+    if rid not in seen_records:
+        err("E-EXPECTED", f"expected tier for {rid} has no record")
+
+# ---- profiles --------------------------------------------------------------------
+profile_paths = [ROOT / "kit/profile.yaml"] + sorted(ROOT.glob("examples/**/profile.yaml"))
+if RECORDS:
+    profile_paths += sorted(RECORDS.glob("**/profile.yaml"))
+tier_ids = {t["id"] for t in (model or {}).get("tiers", [])}
+class_ids = {c["id"] for c in (model or {}).get("data_classes", [])}
+trigger_ids = {t["id"] for t in (model or {}).get("triggers", [])}
+for path in profile_paths:
+    if not path.exists():
+        continue
+    try:
+        rel = path.relative_to(ROOT).as_posix()
+    except ValueError:
+        rel = path.as_posix()
+    prof = load(path, "E-PROFILE") or {}
+    if not isinstance(prof, dict):
+        err("E-PROFILE", f"{rel}: not a mapping")
+        continue
+    for t in (prof.get("routing") or {}):
+        if t not in tier_ids:
+            err("E-PROFILE", f"{rel}: routing names unknown tier {t}")
+    for t, d in (prof.get("decision_targets") or {}).items():
+        if t not in tier_ids or not isinstance(d, int) or d <= 0:
+            err("E-PROFILE", f"{rel}: decision target {t}: {d!r} is not a known tier with a positive number of days")
+    ceil = prof.get("ceilings") or {}
+    if "data_class" in ceil and ceil["data_class"] not in class_ids:
+        err("E-PROFILE", f"{rel}: data_class ceiling {ceil['data_class']!r} is not one of {sorted(class_ids)}")
+    if "autonomy" in ceil and str(ceil["autonomy"]).lower() not in RANK:
+        err("E-PROFILE", f"{rel}: autonomy ceiling {ceil['autonomy']!r} is not a rating")
+    if "people_decisions" in ceil and ceil["people_decisions"] not in ("on", True):
+        err("E-PROFILE", f"{rel}: people_decisions ceiling can only be on; off is looser than the default and is ignored")
+    for x in prof.get("regulated_data_paths") or []:
+        if not isinstance(x, dict) or not all(str(x.get(k) or "").strip() for k in ("id", "covers", "regulation", "owner")):
+            err("E-PROFILE", f"{rel}: each regulated_data_paths entry needs id, covers, regulation and owner")
+    for t in prof.get("triggers") or []:
+        if t not in trigger_ids:
+            err("E-PROFILE", f"{rel}: unknown trigger {t}")
+
+# ---- links -----------------------------------------------------------------------
+LINK = re.compile(r"\[[^\]]*\]\(([^)#\s]+)(?:#[^)]*)?\)")
+for path in sorted(ROOT.glob("**/*.md")):
+    if ".git" in path.parts or path.parent.name == "data" and "skills" in path.parts:
+        continue
+    for target in LINK.findall(path.read_text(encoding="utf-8")):
+        if re.match(r"^[a-z]+:", target) or target.startswith("/"):
+            continue
+        if not (path.parent / target).resolve().exists():
+            err("E-LINK", f"{path.relative_to(ROOT).as_posix()}: link to {target} does not resolve")
+
+if errors:
+    for e in errors:
+        print(e)
+    print(f"{len(errors)} problem(s)")
+    sys.exit(1)
+print("all checks passed")

@@ -1,0 +1,48 @@
+# Organization profile (Level 2). Handrail by Keith Crawford
+# (https://keithcrawford.me). Licensed CC BY 4.0
+# (https://creativecommons.org/licenses/by/4.0/).
+#
+# One per organization. The assessment record names the profile it was scored
+# under, and the handrail-assessor reads it before scoring. Anything you
+# leave out falls back to the defaults in data/model.yaml.
+#
+# Routing and decision targets may change freely. Ceilings only tighten: a
+# value stricter than the default applies; a looser value is ignored and the
+# record says so. tools/check validates this file.
+
+organization: "[Organization name]"
+level: 2                          # 1 or 2
+program_owner: "[Name, role]"     # runs the program and keeps the register current
+backup_owner: "[Name, role]"
+
+# Who decides at each tier and who accepts the remaining risk.
+# Defaults: tiers.<tier>.level_2 in data/model.yaml.
+# The default routing roles below come from the AI Security Risk Workbook v3.0 (Apache-2.0); see NOTICE.
+routing:
+  low:    {decided_by: "Security reviewer",                      accepts_risk: "Business owner of the use case", review: yearly}
+  medium: {decided_by: "Department lead with security review",   accepts_risk: "Business owner of the use case", review: every six months}
+  high:   {decided_by: "AI governance committee",                accepts_risk: "Business unit head",             review: quarterly}
+  severe: {decided_by: "CISO and committee with an executive sponsor", accepts_risk: "Named executive",       review: monthly}
+
+# Working days from a complete request to a decision.
+decision_targets: {low: 2, medium: 5, high: 15, severe: 30}
+
+# Ceilings route a use case as Severe when crossed, whatever the score.
+# Tighten them to make them a control; see ceilings in data/model.yaml.
+ceilings:
+  data_class: confidential        # public | internal | confidential | restricted
+  autonomy: high                  # low | medium | high | severe
+  training: no_training_on_non_public_data
+  people_decisions: on            # on | off; off is looser than the default, so it is ignored
+
+# Regulated data your organization runs a program for. A use case whose only
+# Severe rating is that data can be approved on the designed path, without an
+# exception, when every treatment in regulated_data_path (data/model.yaml) is
+# in place. Leave empty if you run no such program.
+regulated_data_paths: []          # {id, covers, regulation, owner}, e.g. {id: phi, covers: "PHI from healthcare customers", regulation: "HIPAA (business associate)", owner: "Privacy officer"}
+
+# Program triggers that apply (see triggers in data/model.yaml and docs/level-2.md).
+triggers: []                      # any of BUILD, HIGH, AGENT, PEOPLE, REG, EU; add HIGH and AGENT once tools are assessed
+
+approved_by: "[Name, role]"
+approved_on: YYYY-MM-DD

@@ -1,0 +1,33 @@
+# Expected tiers for the worked examples, frozen before any example was scored
+# (2026-10-22). tools/check fails if a record's or inventory row's tier differs.
+# Changing an expectation needs a written reason in the change log below.
+# Licensed Apache-2.0 (LICENSE-code): a test fixture read by tools/check.
+
+frozen_on: "2026-10-22"
+reasoning:
+  CP-01: Personal chat assistant accounts used on client work. Consumer terms allow training and there is no DPA, so retention and contract coverage are Severe.
+  CP-02: Office-suite assistant on the firm's business plan, inside its own tenant. Client material makes sensitivity High. It reads inbound email, so it is Severe (lethal trifecta) unless web search, outbound sending and remote content are off; the firm turned them off, so High.
+  CP-03: Video-call notetaker on a business plan, configured so the host reviews summaries before sharing and recording is announced. Client material keeps it High. With automatic sharing to attendees switched on it would be Severe (lethal trifecta).
+  CP-04: Writing assistant whose plan nobody has confirmed. Retention and training are unknown, so they are scored Severe and the tier is provisional.
+  CP-05: Chat assistant on the firm's business plan with browsing, connectors and link previews turned off. Client material keeps it High; with browsing on it would be Severe (lethal trifecta).
+  SAAS-01: Support assistant built in-house. Reads customer tickets and the customer's own CRM record and drafts replies an agent approves. Customer data under contract, outside senders' tickets and the decision impact on customers make it High. The trifecta is broken twice by design (data scoped to the ticket's customer; every reply approved by a person, with edit-rate evidence).
+  SAAS-02: "Sales meeting notetaker that emails recaps to every attendee, including prospects, automatically. Deal information, outside speakers and automatic outbound email to them complete the lethal trifecta: Severe."
+  SAAS-03: Coding assistant on a business plan, completions and chat only, on repositories classified Internal. Medium.
+  SAAS-04: Prior-authorization drafting over PHI. Data sensitivity is Severe and is the only Severe rating; approved on the designed path for regulated data, so the tier stays Severe without an exception.
+tiers:
+  CP-01: Severe
+  CP-02: High
+  CP-03: High
+  CP-04: Severe
+  CP-05: High
+  SAAS-01: High
+  SAAS-02: Severe
+  SAAS-03: Medium
+  SAAS-04: Severe
+changes:
+  - date: "2026-10-22"
+    change: "CP-05 added as an example of a business-plan chat assistant with browsing off (model 0.5.0). CP-02 reasoning updated to cover its inbound email; tier unchanged."
+    by: Keith Crawford
+  - date: "2026-10-22"
+    change: "SAAS-04 added to show the designed path for regulated data (model 0.6.0)."
+    by: Keith Crawford

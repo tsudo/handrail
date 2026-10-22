@@ -1,0 +1,267 @@
+# EU AI Act crosswalk
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: article references kept; descriptions dropped; one-line summaries in eu-ai-act-articles are written for this project.
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+framework: EU AI Act crosswalk
+by_control:
+  POS-01:
+  - Art. 26
+  - Art. 49
+  - Art. 11
+  POS-02:
+  - Art. 6
+  - Art. 9
+  - Art. 27
+  POS-03:
+  - Art. 26(1)
+  - Art. 17
+  POS-04:
+  - Art. 4
+  - Art. 26
+  POS-05:
+  - Art. 26(2)
+  - Art. 17
+  POS-06:
+  - Art. 25
+  - Art. 53
+  - Art. 26
+  - Art. 13
+  POS-07:
+  - Art. 6
+  - Art. 26
+  - Art. 27
+  - Art. 50
+  POS-08:
+  - Art. 22
+  RUN-01:
+  - Art. 15(5)
+  - Art. 15(1)
+  RUN-02:
+  - Art. 15(1)
+  - Art. 15(4)
+  - Art. 50(1)
+  RUN-03:
+  - Art. 15(1)
+  - Art. 15(5)
+  RUN-04:
+  - Art. 15(1)
+  - Art. 14(4)(e)
+  RUN-05:
+  - Art. 5
+  - Art. 50(1)
+  - Art. 53
+  RUN-06:
+  - Art. 15(5)
+  - Art. 15(1)
+  RUN-07:
+  - Art. 15(5)
+  RUN-08:
+  - Art. 15(5)
+  RUN-09:
+  - Art. 15(4)
+  - Art. 14(4)(e)
+  - Art. 20
+  SHA-01:
+  - Art. 26
+  - Art. 4
+  SHA-02:
+  - Art. 26(1)
+  - Art. 4
+  SHA-03:
+  - Art. 12
+  - Art. 26(6)
+  - Art. 14
+  SHA-04:
+  - Art. 26(5)
+  - Art. 72
+  - Art. 12
+  SHA-05:
+  - Art. 26
+  - Art. 4
+  OBS-01:
+  - Art. 12
+  - Art. 19
+  - Art. 26(6)
+  OBS-02:
+  - Art. 19(1)
+  - Art. 26(6)
+  OBS-03:
+  - Art. 15(5)
+  - Art. 26(5)
+  - Art. 73
+  OBS-04:
+  - Art. 26(5)
+  - Art. 14(4)
+  - Art. 72
+  OBS-05:
+  - Art. 15(1)
+  - Art. 72
+  - Art. 13(3)(b)
+  OBS-06:
+  - Art. 9(6)
+  - Art. 15(5)
+  - Art. 55(1)(a)
+  - Art. 17(1)(d)
+  OBS-07:
+  - Art. 10(2)(f)
+  - Art. 15(4)
+  - Art. 27
+  OBS-08:
+  - Art. 26(5)
+  - Art. 14(4)(e)
+  - Art. 72
+  DAT-01:
+  - Art. 10
+  - Art. 26
+  DAT-02:
+  - Art. 10(5)
+  - Art. 26(9)
+  DAT-03:
+  - Art. 10(2)
+  - Art. 26(4)
+  DAT-04:
+  - Art. 15(5)
+  DAT-05:
+  - Art. 15(5)
+  - Art. 10(5)
+  DAT-06:
+  - Art. 10(5)(b)
+  - Art. 12
+  DAT-07:
+  - Art. 12
+  - Art. 19
+  - Art. 26(6)
+  DAT-08:
+  - Art. 25(4)
+  - Art. 53(1)
+  - Art. 10
+  DAT-09:
+  - Art. 50(2)
+  - Art. 50(4)
+  DAT-10:
+  - Art. 73
+  - Art. 26(5)
+  - Art. 20
+  NHI-01:
+  - Art. 15(5)
+  NHI-02:
+  - Art. 15(5)
+  NHI-03:
+  - Art. 15(5)
+  NHI-04:
+  - Art. 15(5)
+  NHI-05:
+  - Art. 15(5)
+  NHI-06:
+  - Art. 14(4)
+  NHI-07:
+  - Art. 15(5)
+  - Art. 12
+  - Art. 14(4)(d)
+  NHI-08:
+  - Art. 14
+  - Art. 15(1)
+  - Art. 12
+  NHI-09:
+  - Art. 14(1)
+  - Art. 26(2)
+  NHI-10:
+  - Art. 15(5)
+  - Art. 14(4)
+  NHI-11:
+  - Art. 15(5)
+  NHI-12:
+  - Art. 15(5)
+  - Art. 12
+  SUP-01:
+  - Art. 11
+  - Art. 13
+  - Art. 53(1)(a)
+  - Art. 25
+  SUP-02:
+  - Art. 3(23)
+  - Art. 43(4)
+  - Art. 25(1)(c)
+  - Art. 17
+  SUP-03:
+  - Art. 15(4)
+  - Art. 20
+  SUP-04:
+  - Art. 10(2)
+  - Art. 11
+  - Art. 53(1)(c)
+  SUP-05:
+  - Art. 10(5)
+  SUP-06:
+  - Art. 15(5)
+  - Art. 17
+  - Art. 9
+  SUP-07:
+  - Art. 15(5)
+  - Art. 11
+  - Art. 43
+  SUP-08:
+  - Art. 25
+  - Art. 53
+  - Art. 55
+  - Art. 26(1)
+  SUP-09:
+  - Art. 25
+  - Art. 15(5)
+  - Art. 26(1)
+  SUP-10:
+  - Art. 10
+  - Art. 15(5)
+  - Art. 12
+  SUP-11:
+  - Art. 15(5)
+  - Art. 11
+  SUP-12:
+  - Art. 10
+  - Art. 15(5)
+  - Art. 12
+  SUP-13:
+  - Art. 12
+  - Art. 14
+  - Art. 19
+articles:
+  '3': Definitions used throughout the Act, including what counts as a substantial modification
+  '4': Organizations that provide or deploy AI make sure their staff have enough AI literacy for the systems
+    they use
+  '5': Lists AI practices that are banned outright
+  '6': Sets out when an AI system counts as high-risk
+  '9': High-risk providers run a documented risk management process across the system's life
+  '10': High-risk providers govern the data used to train, validate and test the system
+  '11': High-risk providers keep technical documentation for the system
+  '12': High-risk systems log events automatically so their operation can be traced
+  '13': High-risk systems come with instructions that let deployers understand and use them properly
+  '14': High-risk systems are designed so people can oversee them and stop them
+  '15': High-risk systems are accurate, robust and secure for their intended purpose
+  '17': High-risk providers run a quality management system
+  '19': High-risk providers keep the logs their systems generate automatically
+  '20': High-risk providers take corrective action and inform others when a system does not conform
+  '22': Providers outside the EU appoint an authorized representative in the EU
+  '25': Sets out who carries provider duties along the AI value chain, and the written agreements suppliers
+    must give
+  '26': Obligations of organizations that deploy high-risk systems, including oversight, monitoring and
+    record keeping
+  '27': Certain deployers assess the impact on fundamental rights before using a high-risk system
+  '43': High-risk systems go through conformity assessment, again after a substantial modification
+  '49': High-risk systems are registered in the EU database
+  '50': People are told when they interact with AI, and AI-generated content is marked
+  '53': Obligations of general-purpose AI model providers
+  '55': Extra obligations for general-purpose AI models with systemic risk
+  '72': High-risk providers monitor their systems after they are placed on the market
+  '73': Serious incidents involving high-risk systems are reported

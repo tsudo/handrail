@@ -1,0 +1,280 @@
+# SOC 2 Trust Services Criteria crosswalk
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: bare criteria IDs only; descriptions removed.
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+framework: SOC 2 Trust Services Criteria crosswalk
+by_control:
+  POS-01:
+  - CC6.1
+  - CC3.2
+  - CC2.1
+  POS-02:
+  - CC3.1
+  - CC3.2
+  - CC3.4
+  POS-03:
+  - CC5.1
+  - CC5.3
+  - CC8.1
+  POS-04:
+  - CC1.1
+  - CC1.4
+  - CC2.2
+  POS-05:
+  - CC1.3
+  - CC2.2
+  POS-06:
+  - CC9.2
+  - CC3.2
+  POS-07:
+  - CC1.1
+  - CC2.3
+  - CC3.1
+  POS-08:
+  - C1.1
+  - CC6.7
+  - P4.1
+  RUN-01:
+  - CC6.6
+  - CC6.8
+  - PI1.2
+  RUN-02:
+  - PI1.3
+  - PI1.4
+  - C1.1
+  - CC6.7
+  RUN-03:
+  - A1.1
+  - CC6.1
+  - CC7.2
+  RUN-04:
+  - A1.1
+  - A1.2
+  - CC7.2
+  RUN-05:
+  - CC5.2
+  - PI1.1
+  RUN-06:
+  - CC6.6
+  - PI1.2
+  RUN-07:
+  - CC6.6
+  - CC6.7
+  - CC6.1
+  RUN-08:
+  - C1.1
+  - CC6.1
+  - CC6.3
+  RUN-09:
+  - A1.2
+  - A1.3
+  - CC7.5
+  - CC9.1
+  SHA-01:
+  - CC6.1
+  - CC7.1
+  - CC7.2
+  SHA-02:
+  - CC6.1
+  - CC6.8
+  - CC5.3
+  SHA-03:
+  - CC6.1
+  - CC7.2
+  - CC4.1
+  SHA-04:
+  - CC7.2
+  - CC4.1
+  - A1.1
+  SHA-05:
+  - CC6.6
+  - CC6.7
+  - C1.1
+  OBS-01:
+  - CC7.2
+  - CC7.3
+  - CC4.1
+  OBS-02:
+  - CC7.2
+  - CC7.3
+  - CC4.1
+  OBS-03:
+  - CC7.2
+  - CC7.3
+  - CC7.4
+  OBS-04:
+  - CC7.2
+  - CC7.3
+  - CC4.2
+  OBS-05:
+  - PI1.3
+  - PI1.4
+  - CC4.1
+  - A1.1
+  OBS-06:
+  - CC4.1
+  - CC4.2
+  - CC7.1
+  OBS-07:
+  - PI1.3
+  - PI1.4
+  - P7.1
+  OBS-08:
+  - CC7.2
+  - CC7.3
+  - CC4.1
+  DAT-01:
+  - CC6.7
+  - C1.1
+  - P6.1
+  DAT-02:
+  - C1.1
+  - P4.1
+  - P6.1
+  DAT-03:
+  - C1.1
+  - CC3.2
+  - P3.1
+  DAT-04:
+  - CC6.7
+  - CC6.1
+  DAT-05:
+  - CC6.1
+  - C1.1
+  - CC6.7
+  DAT-06:
+  - C1.1
+  - CC6.7
+  - P4.1
+  DAT-07:
+  - C1.2
+  - P4.2
+  - P4.3
+  DAT-08:
+  - C1.1
+  - P4.1
+  - CC9.2
+  DAT-09:
+  - PI1.4
+  - CC2.3
+  DAT-10:
+  - CC7.4
+  - CC7.5
+  - CC2.3
+  - P6.6
+  NHI-01:
+  - CC6.1
+  - CC6.2
+  - CC6.3
+  NHI-02:
+  - CC6.1
+  - CC6.2
+  - CC6.7
+  NHI-03:
+  - CC6.1
+  - CC6.2
+  - CC6.3
+  NHI-04:
+  - CC6.1
+  - CC6.2
+  NHI-05:
+  - CC6.1
+  - CC6.6
+  - CC6.7
+  NHI-06:
+  - CC5.2
+  - CC6.1
+  - PI1.2
+  NHI-07:
+  - CC6.1
+  - CC6.3
+  - CC7.2
+  NHI-08:
+  - CC6.1
+  - A1.1
+  - CC7.2
+  NHI-09:
+  - CC5.2
+  - CC6.1
+  - PI1.3
+  NHI-10:
+  - CC6.1
+  - CC6.6
+  - CC6.7
+  NHI-11:
+  - CC6.1
+  - CC6.6
+  - CC6.8
+  - CC7.1
+  NHI-12:
+  - CC6.1
+  - C1.1
+  - PI1.2
+  SUP-01:
+  - CC9.2
+  - CC8.1
+  - CC6.8
+  SUP-02:
+  - CC8.1
+  - CC7.1
+  - CC6.8
+  SUP-03:
+  - A1.2
+  - A1.3
+  - CC8.1
+  - CC7.5
+  SUP-04:
+  - CC9.2
+  - C1.1
+  - P3.1
+  SUP-05:
+  - P2.1
+  - P3.1
+  - P4.1
+  SUP-06:
+  - CC8.1
+  - CC6.1
+  - CC6.8
+  - CC7.1
+  SUP-07:
+  - CC6.8
+  - CC8.1
+  - CC7.1
+  SUP-08:
+  - CC9.2
+  - CC3.2
+  - CC3.4
+  SUP-09:
+  - CC6.8
+  - CC9.2
+  - CC8.1
+  SUP-10:
+  - CC6.1
+  - CC6.3
+  - PI1.2
+  - C1.1
+  SUP-11:
+  - CC6.1
+  - C1.1
+  - CC6.7
+  SUP-12:
+  - PI1.2
+  - PI1.3
+  - CC6.1
+  - CC8.1
+  SUP-13:
+  - CC7.2
+  - CC4.1
+  - CC6.1

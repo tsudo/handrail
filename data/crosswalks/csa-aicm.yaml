@@ -1,0 +1,331 @@
+# CSA AI Controls Matrix crosswalk
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: bare control IDs only; CSA control names removed (CSA licence).
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+framework: CSA AI Controls Matrix crosswalk
+by_control:
+  POS-01:
+  - GRC-05
+  - DCS-06
+  - UEM-02
+  - STA-16
+  POS-02:
+  - GRC-02
+  - GRC-10
+  - TVM-12
+  POS-03:
+  - GRC-01
+  - GRC-06
+  - UEM-02
+  - CCC-04
+  POS-04:
+  - GRC-09
+  - HRS-15
+  - HRS-02
+  POS-05:
+  - GRC-06
+  - DSP-06
+  - STA-05
+  POS-06:
+  - STA-01
+  - STA-09
+  - STA-12
+  - STA-15
+  - A&A-02
+  POS-07:
+  - GRC-07
+  - A&A-04
+  POS-08:
+  - DSP-19
+  - DSP-10
+  - STA-10
+  RUN-01:
+  - AIS-08
+  - AIS-15
+  - TVM-11
+  - LOG-14
+  RUN-02:
+  - AIS-09
+  - LOG-15
+  - TVM-11
+  - IAM-18
+  RUN-03:
+  - AIS-10
+  - I&S-02
+  - TVM-11
+  RUN-04:
+  - I&S-02
+  - AIS-10
+  - AIS-11
+  RUN-05:
+  - TVM-11
+  - TVM-02
+  - AIS-09
+  - GRC-09
+  RUN-06:
+  - AIS-08
+  - AIS-15
+  - LOG-14
+  RUN-07:
+  - I&S-03
+  - I&S-09
+  - I&S-06
+  RUN-08:
+  - AIS-14
+  - DSP-17
+  - I&S-06
+  RUN-09:
+  - BCR-04
+  - BCR-09
+  - MDS-11
+  - CCC-09
+  SHA-01:
+  - UEM-04
+  - UEM-02
+  - DCS-06
+  - LOG-07
+  SHA-02:
+  - UEM-02
+  - GRC-04
+  - HRS-15
+  SHA-03:
+  - LOG-12
+  - LOG-04
+  - IAM-13
+  SHA-04:
+  - LOG-03
+  - LOG-05
+  - LOG-13
+  - I&S-02
+  SHA-05:
+  - UEM-11
+  - I&S-09
+  - HRS-15
+  - DSP-10
+  OBS-01:
+  - LOG-07
+  - LOG-08
+  - LOG-11
+  - LOG-14
+  - LOG-15
+  OBS-02:
+  - LOG-02
+  - LOG-09
+  - DSP-16
+  OBS-03:
+  - LOG-03
+  - LOG-05
+  - SEF-06
+  OBS-04:
+  - LOG-03
+  - LOG-13
+  - SEF-06
+  OBS-05:
+  - MDS-10
+  - MDS-11
+  - LOG-15
+  - AIS-03
+  OBS-06:
+  - TVM-06
+  - MDS-06
+  - MDS-07
+  - TVM-12
+  OBS-07:
+  - GRC-11
+  - DSP-24
+  - MDS-03
+  OBS-08:
+  - LOG-15
+  - LOG-03
+  - LOG-13
+  - IAM-19
+  - MDS-10
+  DAT-01:
+  - UEM-11
+  - DSP-10
+  - DSP-17
+  - DSP-07
+  DAT-02:
+  - DSP-04
+  - DSP-17
+  - LOG-14
+  - LOG-15
+  - DSP-22
+  DAT-03:
+  - DSP-04
+  - DSP-03
+  - DSP-05
+  - DCS-05
+  DAT-04:
+  - CEK-03
+  - CEK-04
+  - DSP-10
+  - I&S-03
+  DAT-05:
+  - CEK-03
+  - CEK-08
+  - CEK-12
+  - DSP-17
+  DAT-06:
+  - DSP-15
+  - DSP-22
+  - DSP-17
+  - LOG-09
+  DAT-07:
+  - DSP-16
+  - DSP-02
+  - DSP-12
+  DAT-08:
+  - STA-10
+  - DSP-12
+  - DSP-15
+  - DSP-20
+  DAT-09:
+  - DSP-20
+  - AIS-09
+  - GRC-09
+  DAT-10:
+  - SEF-07
+  - DSP-18
+  - SEF-03
+  - SEF-08
+  NHI-01:
+  - IAM-05
+  - IAM-16
+  - IAM-19
+  - IAM-03
+  NHI-02:
+  - IAM-15
+  - CEK-21
+  - AIS-12
+  NHI-03:
+  - CEK-12
+  - IAM-15
+  - IAM-07
+  NHI-04:
+  - IAM-14
+  - IAM-16
+  - IAM-10
+  NHI-05:
+  - IAM-13
+  - IAM-14
+  - IAM-19
+  - IAM-03
+  NHI-06:
+  - IAM-19
+  - AIS-11
+  - IAM-16
+  - GRC-15
+  NHI-07:
+  - IAM-19
+  - IAM-16
+  - AIS-10
+  - LOG-11
+  - AIS-11
+  NHI-08:
+  - AIS-11
+  - IAM-19
+  - I&S-02
+  - IAM-03
+  NHI-09:
+  - GRC-15
+  - IAM-18
+  - AIS-11
+  - CCC-04
+  NHI-10:
+  - AIS-11
+  - I&S-06
+  - IAM-19
+  - AIS-10
+  NHI-11:
+  - AIS-13
+  - I&S-04
+  - I&S-06
+  - TVM-02
+  NHI-12:
+  - AIS-14
+  - DSP-21
+  - DSP-17
+  - IAM-17
+  SUP-01:
+  - MDS-03
+  - MDS-09
+  - DSP-20
+  - STA-16
+  SUP-02:
+  - CCC-06
+  - CCC-01
+  - CCC-04
+  - MDS-03
+  SUP-03:
+  - CCC-09
+  - MDS-11
+  - BCR-08
+  - BCR-04
+  SUP-04:
+  - DSP-20
+  - DSP-05
+  - MDS-01
+  - MDS-04
+  SUP-05:
+  - DSP-12
+  - DSP-08
+  - DSP-11
+  - DSP-20
+  SUP-06:
+  - MDS-01
+  - AIS-04
+  - AIS-06
+  - AIS-12
+  - CCC-03
+  SUP-07:
+  - MDS-08
+  - MDS-09
+  - MDS-13
+  - MDS-02
+  - DSP-23
+  SUP-08:
+  - MDS-12
+  - STA-09
+  - STA-15
+  - MDS-05
+  - GRC-11
+  SUP-09:
+  - STA-16
+  - STA-08
+  - AIS-05
+  - TVM-05
+  - UEM-02
+  SUP-10:
+  - DSP-21
+  - IAM-17
+  - DSP-17
+  - DSP-23
+  - IAM-05
+  SUP-11:
+  - AIS-15
+  - IAM-15
+  - AIS-02
+  - TVM-11
+  SUP-12:
+  - DSP-23
+  - DSP-21
+  - MDS-01
+  - CCC-07
+  SUP-13:
+  - LOG-11
+  - IAM-12
+  - LOG-02
+  - IAM-19

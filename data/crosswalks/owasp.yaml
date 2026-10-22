@@ -1,0 +1,421 @@
+# OWASP Top 10 crosswalk (LLM 2025, Agentic 2026)
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: IDs kept with official short names only; descriptions dropped.
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+framework: OWASP Top 10 crosswalk (LLM 2025, Agentic 2026)
+by_control:
+  POS-01:
+  - id: LLM03
+    name: Supply Chain
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  POS-02:
+  - id: LLM01
+    name: Prompt Injection
+  - id: LLM10
+    name: Unbounded Consumption
+  - id: ASI01
+    name: Agent Goal Hijack
+  - id: ASI10
+    name: Rogue Agents
+  POS-03:
+  - id: LLM06
+    name: Excessive Agency
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  POS-04:
+  - id: ASI09
+    name: Human-Agent Trust Exploitation
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  POS-05:
+  - id: ASI10
+    name: Rogue Agents
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  POS-06:
+  - id: LLM03
+    name: Supply Chain
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  POS-07: []
+  POS-08:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM03
+    name: Supply Chain
+  RUN-01:
+  - id: LLM01
+    name: Prompt Injection
+  - id: LLM07
+    name: System Prompt Leakage
+  - id: ASI01
+    name: Agent Goal Hijack
+  RUN-02:
+  - id: LLM05
+    name: Improper Output Handling
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM09
+    name: Misinformation
+  RUN-03:
+  - id: LLM10
+    name: Unbounded Consumption
+  RUN-04:
+  - id: LLM10
+    name: Unbounded Consumption
+  - id: ASI08
+    name: Cascading Failures
+  - id: ASI10
+    name: Rogue Agents
+  RUN-05:
+  - id: LLM05
+    name: Improper Output Handling
+  - id: LLM09
+    name: Misinformation
+  - id: ASI09
+    name: Human-Agent Trust Exploitation
+  RUN-06:
+  - id: LLM01
+    name: Prompt Injection
+  - id: ASI01
+    name: Agent Goal Hijack
+  RUN-07:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: ASI02
+    name: Tool Misuse
+  - id: ASI08
+    name: Cascading Failures
+  RUN-08:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: ASI06
+    name: Memory and Context Poisoning
+  RUN-09:
+  - id: LLM09
+    name: Misinformation
+  - id: ASI08
+    name: Cascading Failures
+  - id: ASI10
+    name: Rogue Agents
+  SHA-01:
+  - id: LLM03
+    name: Supply Chain
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  SHA-02:
+  - id: LLM03
+    name: Supply Chain
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  SHA-03:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  SHA-04:
+  - id: LLM10
+    name: Unbounded Consumption
+  - id: ASI10
+    name: Rogue Agents
+  SHA-05:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  OBS-01:
+  - id: LLM01
+    name: Prompt Injection
+  - id: LLM10
+    name: Unbounded Consumption
+  - id: ASI01
+    name: Agent Goal Hijack
+  - id: ASI10
+    name: Rogue Agents
+  OBS-02:
+  - id: LLM01
+    name: Prompt Injection
+  - id: ASI01
+    name: Agent Goal Hijack
+  - id: ASI10
+    name: Rogue Agents
+  OBS-03:
+  - id: ASI08
+    name: Cascading Failures
+  - id: ASI10
+    name: Rogue Agents
+  OBS-04:
+  - id: LLM10
+    name: Unbounded Consumption
+  - id: ASI10
+    name: Rogue Agents
+  - id: ASI08
+    name: Cascading Failures
+  OBS-05:
+  - id: LLM09
+    name: Misinformation
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: ASI10
+    name: Rogue Agents
+  OBS-06:
+  - id: LLM01
+    name: Prompt Injection
+  - id: LLM07
+    name: System Prompt Leakage
+  - id: ASI01
+    name: Agent Goal Hijack
+  - id: ASI05
+    name: Unexpected Code Execution
+  OBS-07:
+  - id: LLM09
+    name: Misinformation
+  - id: ASI09
+    name: Human-Agent Trust Exploitation
+  OBS-08:
+  - id: ASI10
+    name: Rogue Agents
+  - id: ASI08
+    name: Cascading Failures
+  - id: ASI02
+    name: Tool Misuse
+  - id: LLM06
+    name: Excessive Agency
+  DAT-01:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: ASI02
+    name: Tool Misuse
+  DAT-02:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM05
+    name: Improper Output Handling
+  DAT-03:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM08
+    name: Vector and Embedding Weaknesses
+  DAT-04:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: ASI07
+    name: Insecure Inter-Agent Communication
+  DAT-05:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM08
+    name: Vector and Embedding Weaknesses
+  - id: ASI06
+    name: Memory and Context Poisoning
+  DAT-06:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM05
+    name: Improper Output Handling
+  DAT-07:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: ASI06
+    name: Memory and Context Poisoning
+  DAT-08:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM03
+    name: Supply Chain
+  DAT-09:
+  - id: LLM09
+    name: Misinformation
+  - id: ASI09
+    name: Human-Agent Trust Exploitation
+  DAT-10:
+  - id: ASI09
+    name: Human-Agent Trust Exploitation
+  - id: LLM09
+    name: Misinformation
+  NHI-01:
+  - id: LLM06
+    name: Excessive Agency
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  NHI-02:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM07
+    name: System Prompt Leakage
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  NHI-03:
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  NHI-04:
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  - id: LLM06
+    name: Excessive Agency
+  NHI-05:
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  - id: ASI07
+    name: Insecure Inter-Agent Communication
+  - id: ASI10
+    name: Rogue Agents
+  NHI-06:
+  - id: ASI01
+    name: Agent Goal Hijack
+  - id: ASI02
+    name: Tool Misuse
+  - id: LLM06
+    name: Excessive Agency
+  NHI-07:
+  - id: ASI02
+    name: Tool Misuse
+  - id: LLM06
+    name: Excessive Agency
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  NHI-08:
+  - id: ASI10
+    name: Rogue Agents
+  - id: ASI08
+    name: Cascading Failures
+  - id: LLM06
+    name: Excessive Agency
+  - id: LLM10
+    name: Unbounded Consumption
+  NHI-09:
+  - id: ASI02
+    name: Tool Misuse
+  - id: ASI10
+    name: Rogue Agents
+  - id: LLM06
+    name: Excessive Agency
+  - id: ASI09
+    name: Human-Agent Trust Exploitation
+  NHI-10:
+  - id: ASI07
+    name: Insecure Inter-Agent Communication
+  - id: ASI08
+    name: Cascading Failures
+  - id: ASI10
+    name: Rogue Agents
+  - id: LLM06
+    name: Excessive Agency
+  NHI-11:
+  - id: ASI05
+    name: Unexpected Code Execution
+  - id: ASI02
+    name: Tool Misuse
+  - id: LLM05
+    name: Improper Output Handling
+  NHI-12:
+  - id: ASI06
+    name: Memory and Context Poisoning
+  - id: LLM08
+    name: Vector and Embedding Weaknesses
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  SUP-01:
+  - id: LLM03
+    name: Supply Chain
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  SUP-02:
+  - id: LLM03
+    name: Supply Chain
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  SUP-03:
+  - id: LLM03
+    name: Supply Chain
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: ASI08
+    name: Cascading Failures
+  SUP-04:
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: LLM03
+    name: Supply Chain
+  SUP-05:
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: LLM04
+    name: Data and Model Poisoning
+  SUP-06:
+  - id: LLM03
+    name: Supply Chain
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  - id: ASI05
+    name: Unexpected Code Execution
+  SUP-07:
+  - id: LLM03
+    name: Supply Chain
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  SUP-08:
+  - id: LLM03
+    name: Supply Chain
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  SUP-09:
+  - id: ASI04
+    name: Agentic Supply Chain Vulnerabilities
+  - id: LLM03
+    name: Supply Chain
+  - id: ASI02
+    name: Tool Misuse
+  SUP-10:
+  - id: LLM08
+    name: Vector and Embedding Weaknesses
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: LLM02
+    name: Sensitive Information Disclosure
+  - id: ASI06
+    name: Memory and Context Poisoning
+  SUP-11:
+  - id: LLM07
+    name: System Prompt Leakage
+  - id: LLM01
+    name: Prompt Injection
+  - id: ASI01
+    name: Agent Goal Hijack
+  SUP-12:
+  - id: LLM08
+    name: Vector and Embedding Weaknesses
+  - id: LLM04
+    name: Data and Model Poisoning
+  - id: ASI06
+    name: Memory and Context Poisoning
+  SUP-13:
+  - id: ASI10
+    name: Rogue Agents
+  - id: ASI03
+    name: Identity and Privilege Abuse
+  - id: ASI07
+    name: Insecure Inter-Agent Communication
+  - id: LLM06
+    name: Excessive Agency

@@ -1,0 +1,709 @@
+# Handrail AI function library (57 derived, 2 added with the ts- prefix)
+#
+# Copyright 2026 Jason Robbins (AI Security Risk Workbook v3.0), Apache-2.0.
+# Modifications copyright 2026 Keith Crawford, Apache-2.0.
+#
+# Modified from the AI Security Risk Workbook v3.0 by Jason Robbins
+# (https://github.com/jasonmichaelrobbins-arch/-ai-security-governance-workbook, commit b775ec31a34e7788bb5b75fc55111d5a51d991b2).
+# Changes: restructured as YAML; slug identifiers added (the workbook keys functions by name); example product and vendor names dropped; family column dropped (derived from controls); two functions added with the ts- prefix. The risk field describes the function in the abstract and does not set a tier.
+#
+# Identifiers such as POS-01 and NHI-07 are the workbook's identifiers, kept
+# for traceability. They are not a published industry standard. Three
+# Surfaces is not endorsed by or affiliated with Jason Robbins. See NOTICE.
+# Generated from the workbook by the maintainers' derive step on 2026-10-22.
+# To add your own entry, add it here with the ts- prefix (TS- for controls)
+# and run tools/check, which accepts prefixed entries.
+
+catalog_version: 1.0.0
+functions:
+- id: time-date-and-timezone-calculations
+  name: Time, date and timezone calculations
+  risk: low
+  agentic: false
+  controls:
+  - OBS-01
+- id: public-data-lookups-weather-rates-reference-apis
+  name: Public data lookups (weather, rates, reference APIs)
+  risk: low
+  agentic: false
+  controls:
+  - RUN-03
+  - RUN-07
+  - OBS-01
+- id: geographic-and-mapping-information
+  name: Geographic and mapping information
+  risk: low
+  agentic: false
+  controls:
+  - DAT-02
+  - RUN-07
+  - OBS-01
+- id: basic-system-health-checks-read-only
+  name: Basic system health checks (read-only)
+  risk: low
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-02
+  - OBS-01
+- id: static-file-read-public-or-non-sensitive
+  name: Static file read (public or non-sensitive)
+  risk: low
+  agentic: false
+  controls:
+  - NHI-01
+  - DAT-03
+  - OBS-01
+- id: online-search-interfaces
+  name: Online search interfaces
+  risk: medium
+  agentic: false
+  controls:
+  - RUN-03
+  - RUN-07
+  - DAT-01
+  - OBS-01
+- id: web-data-extraction-and-scraping
+  name: Web data extraction and scraping
+  risk: medium
+  agentic: false
+  controls:
+  - RUN-07
+  - RUN-01
+  - OBS-01
+  - OBS-06
+- id: automated-task-execution-scoped
+  name: Automated task execution (scoped)
+  risk: medium
+  agentic: true
+  controls:
+  - NHI-05
+  - NHI-06
+  - NHI-07
+  - NHI-02
+  - NHI-04
+  - RUN-04
+  - OBS-04
+  - OBS-08
+  - OBS-06
+- id: log-processing-and-event-analysis
+  name: Log processing and event analysis
+  risk: medium
+  agentic: false
+  controls:
+  - NHI-01
+  - DAT-02
+  - DAT-06
+  - DAT-03
+  - OBS-01
+- id: enterprise-data-queries-read-only
+  name: Enterprise data queries (read-only)
+  risk: medium
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-02
+  - NHI-03
+  - DAT-01
+  - DAT-02
+  - DAT-03
+  - OBS-01
+  - OBS-03
+  - OBS-04
+- id: internal-documentation-retrieval
+  name: Internal documentation retrieval
+  risk: medium
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-02
+  - NHI-03
+  - DAT-01
+  - DAT-03
+  - OBS-01
+  - OBS-03
+  - OBS-04
+  - SUP-10
+- id: code-repository-read-access
+  name: Code repository read access
+  risk: medium
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-02
+  - NHI-03
+  - DAT-03
+  - OBS-01
+- id: email-chat-and-messaging-read-access
+  name: Email, chat and messaging read access
+  risk: medium
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-02
+  - NHI-03
+  - DAT-01
+  - DAT-02
+  - DAT-03
+  - OBS-01
+  - OBS-03
+  - OBS-04
+- id: llm-prompt-processing-text
+  name: LLM prompt processing (text)
+  risk: medium
+  agentic: false
+  controls:
+  - RUN-01
+  - RUN-03
+  - RUN-05
+  - RUN-09
+  - OBS-01
+  - OBS-02
+  - SHA-03
+  - SHA-04
+  - SUP-01
+  - SUP-02
+  - SUP-03
+  - SUP-08
+  - SUP-11
+  - DAT-04
+  - DAT-05
+  - DAT-07
+  - DAT-08
+  - DAT-10
+  - POS-08
+- id: multi-modal-input-processing-image-audio-video
+  name: Multi-modal input processing (image, audio, video)
+  risk: medium
+  agentic: false
+  controls:
+  - RUN-06
+  - RUN-05
+  - RUN-01
+- id: ai-response-generation-text
+  name: AI response generation (text)
+  risk: medium
+  agentic: false
+  controls:
+  - RUN-02
+  - RUN-05
+  - OBS-05
+  - OBS-01
+- id: vector-database-queries-read-only
+  name: Vector database queries (read-only)
+  risk: medium
+  agentic: false
+  controls:
+  - SUP-10
+  - SUP-12
+  - NHI-01
+  - DAT-02
+  - OBS-01
+- id: prompt-chaining-and-workflow-orchestration
+  name: Prompt chaining and workflow orchestration
+  risk: medium
+  agentic: true
+  controls:
+  - NHI-05
+  - NHI-07
+  - NHI-08
+  - RUN-04
+  - OBS-05
+  - OBS-08
+  - OBS-01
+- id: prompt-caching-across-requests
+  name: Prompt caching across requests
+  risk: medium
+  agentic: false
+  controls:
+  - RUN-08
+  - DAT-07
+- id: mcp-server-vendor-signed-or-verified
+  name: 'MCP server: vendor-signed or verified'
+  risk: medium
+  agentic: true
+  controls:
+  - SUP-09
+  - NHI-07
+  - NHI-05
+  - RUN-04
+  - OBS-08
+- id: automated-file-handling-read-and-write
+  name: Automated file handling (read and write)
+  risk: high
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-02
+  - NHI-03
+  - NHI-09
+  - DAT-01
+  - DAT-03
+  - OBS-01
+  - OBS-03
+  - OBS-04
+- id: filesystem-traversal-outside-the-workspace
+  name: Filesystem traversal outside the workspace
+  risk: high
+  agentic: true
+  controls:
+  - NHI-11
+  - NHI-01
+  - NHI-02
+  - OBS-01
+  - OBS-08
+- id: code-repository-write-access
+  name: Code repository write access
+  risk: high
+  agentic: true
+  controls:
+  - NHI-09
+  - NHI-07
+  - NHI-02
+  - NHI-04
+  - OBS-01
+  - OBS-04
+  - SUP-06
+- id: enterprise-file-indexing-and-search
+  name: Enterprise file indexing and search
+  risk: high
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-02
+  - DAT-01
+  - DAT-02
+  - DAT-03
+  - SUP-10
+  - SUP-12
+  - OBS-03
+  - OBS-04
+  - POS-08
+- id: automated-messaging-and-email-send
+  name: Automated messaging and email send
+  risk: high
+  agentic: true
+  controls:
+  - NHI-09
+  - NHI-07
+  - NHI-06
+  - RUN-02
+  - OBS-01
+  - OBS-04
+  - OBS-08
+- id: ai-memory-and-context-storage-user-scoped
+  name: AI memory and context storage (user-scoped)
+  risk: high
+  agentic: true
+  controls:
+  - NHI-12
+  - NHI-02
+  - DAT-02
+  - DAT-03
+  - DAT-05
+  - DAT-07
+- id: agent-memory-write-back-to-shared-stores
+  name: Agent memory write-back to shared stores
+  risk: high
+  agentic: true
+  controls:
+  - NHI-12
+  - NHI-09
+  - DAT-02
+  - DAT-03
+  - SUP-12
+  - OBS-08
+- id: business-intelligence-system-updates
+  name: Business intelligence system updates
+  risk: high
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-07
+  - NHI-09
+  - OBS-01
+  - OBS-04
+- id: hr-financial-or-pii-system-access
+  name: HR, financial or PII system access
+  risk: high
+  agentic: false
+  controls:
+  - NHI-05
+  - NHI-01
+  - NHI-02
+  - NHI-03
+  - DAT-01
+  - DAT-02
+  - DAT-03
+  - DAT-06
+  - OBS-01
+  - OBS-03
+  - OBS-04
+  - OBS-07
+  - POS-07
+- id: cloud-storage-access-s3-gcs-azure-blob
+  name: Cloud storage access (S3, GCS, Azure Blob)
+  risk: high
+  agentic: false
+  controls:
+  - NHI-01
+  - NHI-02
+  - NHI-03
+  - NHI-04
+  - DAT-01
+  - DAT-03
+  - DAT-05
+  - OBS-01
+  - OBS-03
+- id: external-api-calls-outbound-allowlisted
+  name: External API calls (outbound, allowlisted)
+  risk: high
+  agentic: true
+  controls:
+  - RUN-07
+  - NHI-07
+  - NHI-02
+  - NHI-04
+  - DAT-01
+  - OBS-01
+  - OBS-04
+- id: code-execution-in-an-ephemeral-sandbox
+  name: Code execution in an ephemeral sandbox
+  risk: high
+  agentic: true
+  controls:
+  - NHI-11
+  - RUN-04
+  - RUN-07
+  - OBS-08
+  - OBS-06
+- id: rag-with-confidential-documents
+  name: RAG with confidential documents
+  risk: high
+  agentic: false
+  controls:
+  - SUP-10
+  - SUP-12
+  - NHI-01
+  - NHI-02
+  - DAT-01
+  - DAT-02
+  - DAT-03
+  - DAT-05
+  - OBS-01
+  - OBS-03
+  - OBS-04
+  - OBS-06
+  - RUN-01
+  - POS-08
+- id: tool-and-function-calling-by-ai-agents
+  name: Tool and function calling by AI agents
+  risk: high
+  agentic: true
+  controls:
+  - NHI-05
+  - NHI-06
+  - NHI-07
+  - NHI-10
+  - NHI-02
+  - NHI-03
+  - NHI-04
+  - RUN-04
+  - OBS-01
+  - OBS-04
+  - OBS-06
+  - OBS-08
+- id: vector-database-write-access
+  name: Vector database write access
+  risk: high
+  agentic: true
+  controls:
+  - SUP-10
+  - SUP-12
+  - DAT-02
+  - DAT-03
+  - NHI-09
+  - OBS-04
+- id: human-in-the-loop-approval-workflows
+  name: Human-in-the-loop approval workflows
+  risk: high
+  agentic: true
+  controls:
+  - NHI-09
+  - NHI-06
+  - OBS-01
+  - SUP-13
+- id: mcp-server-community-or-open-source
+  name: 'MCP server: community or open source'
+  risk: high
+  agentic: true
+  controls:
+  - SUP-09
+  - NHI-11
+  - NHI-07
+  - NHI-05
+  - OBS-04
+  - OBS-08
+  - OBS-06
+- id: sub-agent-spawning-bounded
+  name: Sub-agent spawning (bounded)
+  risk: high
+  agentic: true
+  controls:
+  - NHI-08
+  - NHI-05
+  - RUN-04
+  - OBS-01
+  - OBS-08
+  - SUP-13
+- id: dynamic-tool-loading-at-runtime
+  name: Dynamic tool loading at runtime
+  risk: high
+  agentic: true
+  controls:
+  - SUP-09
+  - NHI-07
+  - NHI-11
+  - NHI-06
+  - OBS-08
+- id: long-running-or-background-agents
+  name: Long-running or background agents
+  risk: high
+  agentic: true
+  controls:
+  - OBS-08
+  - RUN-04
+  - RUN-09
+  - OBS-04
+  - NHI-04
+  - NHI-09
+- id: model-in-the-loop-decision-routing
+  name: Model-in-the-loop decision routing
+  risk: high
+  agentic: true
+  controls:
+  - OBS-01
+  - OBS-05
+  - OBS-07
+  - NHI-09
+  - POS-07
+  - DAT-10
+- id: fine-tuning-with-customer-or-non-production-data
+  name: Fine-tuning with customer or non-production data
+  risk: high
+  agentic: false
+  controls:
+  - SUP-04
+  - SUP-05
+  - SUP-06
+  - SUP-07
+  - DAT-02
+  - DAT-03
+- id: content-generation-for-external-publication
+  name: Content generation for external publication
+  risk: high
+  agentic: false
+  controls:
+  - DAT-09
+  - DAT-10
+  - RUN-02
+  - RUN-05
+  - NHI-09
+  - OBS-01
+- id: autonomous-web-browsing
+  name: Autonomous web browsing
+  risk: severe
+  agentic: true
+  controls:
+  - RUN-07
+  - RUN-01
+  - NHI-06
+  - NHI-09
+  - OBS-08
+  - OBS-06
+  - DAT-01
+- id: log-analysis-containing-pii-or-regulated-data
+  name: Log analysis containing PII or regulated data
+  risk: severe
+  agentic: false
+  controls:
+  - DAT-06
+  - DAT-02
+  - DAT-03
+  - NHI-01
+  - OBS-03
+  - POS-07
+  - POS-08
+- id: shell-or-bash-execution
+  name: Shell or bash execution
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-11
+  - NHI-07
+  - NHI-01
+  - NHI-02
+  - OBS-01
+  - OBS-08
+  - OBS-06
+- id: privileged-system-automation-production-infrastructure
+  name: Privileged system automation (production infrastructure)
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-09
+  - NHI-10
+  - NHI-04
+  - NHI-05
+  - NHI-07
+  - OBS-01
+  - OBS-04
+  - OBS-08
+  - SUP-13
+- id: unrestricted-code-execution-no-sandbox
+  name: Unrestricted code execution (no sandbox)
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-11
+  - NHI-10
+  - RUN-07
+  - OBS-08
+  - OBS-06
+  - SUP-13
+- id: model-fine-tuning-with-production-data
+  name: Model fine-tuning with production data
+  risk: severe
+  agentic: false
+  controls:
+  - SUP-04
+  - SUP-05
+  - SUP-06
+  - SUP-07
+  - DAT-02
+  - DAT-03
+  - DAT-06
+  - DAT-07
+  - POS-07
+- id: infrastructure-automation-terraform-kubernetes
+  name: Infrastructure automation (Terraform, Kubernetes)
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-09
+  - NHI-10
+  - NHI-01
+  - NHI-04
+  - NHI-05
+  - NHI-07
+  - OBS-01
+  - OBS-04
+  - SUP-13
+- id: autonomous-agent-with-unrestricted-api-access
+  name: Autonomous agent with unrestricted API access
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-07
+  - NHI-09
+  - NHI-10
+  - NHI-04
+  - RUN-07
+  - OBS-08
+  - OBS-06
+  - SUP-13
+- id: multi-agent-orchestration-autonomous
+  name: Multi-agent orchestration (autonomous)
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-10
+  - NHI-05
+  - NHI-06
+  - NHI-08
+  - RUN-04
+  - OBS-08
+  - SUP-13
+- id: agent-task-delegation-or-unbounded-spawning
+  name: Agent task delegation or unbounded spawning
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-08
+  - NHI-09
+  - NHI-10
+  - RUN-04
+  - OBS-08
+  - SUP-13
+- id: autonomous-decision-making-on-consequential-actions
+  name: Autonomous decision-making on consequential actions
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-09
+  - NHI-06
+  - OBS-01
+  - OBS-07
+  - POS-07
+  - DAT-10
+  - SUP-13
+- id: computer-use-screen-capture-mouse-and-keyboard-control
+  name: 'Computer use: screen capture, mouse and keyboard control'
+  risk: severe
+  agentic: true
+  controls:
+  - NHI-09
+  - NHI-11
+  - NHI-06
+  - DAT-02
+  - OBS-01
+  - OBS-08
+  - OBS-06
+- id: mcp-server-custom-or-self-built-unreviewed
+  name: 'MCP server: custom or self-built (unreviewed)'
+  risk: severe
+  agentic: true
+  controls:
+  - SUP-09
+  - SUP-06
+  - NHI-11
+  - NHI-07
+  - NHI-05
+  - OBS-08
+  - OBS-06
+- id: dynamic-model-swap-at-runtime
+  name: Dynamic model swap at runtime
+  risk: severe
+  agentic: true
+  controls:
+  - SUP-01
+  - SUP-02
+  - SUP-03
+  - SUP-07
+  - OBS-05
+- id: ts-business-record-create-and-update
+  name: Business record create and update (CRM, ticketing, ERP)
+  risk: high
+  agentic: true
+  controls:
+  - NHI-01
+  - NHI-06
+  - NHI-07
+  - NHI-09
+  - OBS-01
+  - OBS-04
+  - OBS-08
+- id: ts-chat-answering-outside-users
+  name: Chat that answers customers or the public directly
+  risk: high
+  agentic: false
+  controls:
+  - RUN-01
+  - RUN-02
+  - RUN-03
+  - RUN-05
+  - DAT-02
+  - DAT-10
+  - OBS-01
+  - OBS-06
+  - SUP-11

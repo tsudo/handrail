@@ -1,0 +1,31 @@
+# Organization profile: fictional worked example. Three Surfaces by Keith
+# Crawford (https://keithcrawford.me). Licensed CC BY 4.0
+# (https://creativecommons.org/licenses/by/4.0/).
+
+organization: "Example SaaS company (fictional, 300 people)"
+level: 2
+program_owner: "GRC analyst"
+backup_owner: "Security manager"
+
+# The default routing roles below come from the AI Security Risk Workbook v3.0 (Apache-2.0); see NOTICE.
+routing:
+  low:    {decided_by: "Security reviewer",                      accepts_risk: "Business owner of the use case", review: yearly}
+  medium: {decided_by: "Department lead with security review",   accepts_risk: "Business owner of the use case", review: every six months}
+  high:   {decided_by: "AI governance committee",                accepts_risk: "Business unit head",             review: quarterly}
+  severe: {decided_by: "CISO and committee with an executive sponsor", accepts_risk: "Named executive",       review: monthly}
+
+decision_targets: {low: 2, medium: 5, high: 10, severe: 30}   # High tightened from 15 to 10 days
+
+ceilings:
+  data_class: confidential
+  autonomy: high
+  training: no_training_on_non_public_data
+  people_decisions: on
+
+regulated_data_paths:
+  - {id: phi, covers: "PHI in healthcare customers' data, processed as a business associate", regulation: "HIPAA", owner: "Privacy officer"}
+
+triggers: [BUILD, HIGH, AGENT, PEOPLE, REG]
+
+approved_by: "CISO"
+approved_on: 2026-10-15
