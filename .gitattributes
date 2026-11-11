@@ -1,0 +1,9 @@
+# Check files on LF everywhere. tools/check hashes data/model.yaml and the
+# plugin skill copies; CRLF conversion on Windows checkouts breaks the match.
+* text=auto eol=lf
+# CSVs are committed with CRLF line endings; keep them byte-exact.
+*.csv -text
+*.xlsx binary
+*.docx binary
+*.png binary
+*.pdf binary
